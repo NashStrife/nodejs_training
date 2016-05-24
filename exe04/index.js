@@ -8,8 +8,19 @@ const app = express();
 // stocker le chemin d'exécution du fichier actuel donc là ou s'exécute node et pas le chemin du fichier appellé
 const root = process.cwd();
 
-// définit le moteur de rendu en disant que les fichiers seront de type .hbs et que le layout est main.hbs
-app.engine('hbs', exphbs({defaultLayout: 'main', extname:'.hbs'}));
+// définit que l'extension des fichiers sera .hbs et que le layout par défaut est main.hbs
+let hbs = exphbs.create({
+	defaultLayout : 'main',
+	extname : '.hbs',
+	// envoie des variables à la page avec des helpers
+	helpers : {
+		crie : function(){return new Date();},
+		yell : function(str){return str.toUpperCase()}
+	}
+});
+
+// définit le moteur de rendu hbs en disant qu'on passe par l'objet créé + haut
+app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 // définit dans quel dossier se trouvent les fichiers "statiques" [ex: images/css/js/...]

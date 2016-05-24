@@ -10,14 +10,11 @@ module.exports.saveTagToFile = function(data, tagToSave){
 	// console.log($(tagToSave).text());
 
 	// récupérer les données et les enregistrer dans un fichier txt
-	let titleDatas = $(tagToSave).text();
+	let titleDatas = `${$(tagToSave).text()}\n`;
 	// avec appendFile il créée le fichier s'il existe pas et s'il existe il ajoute le nouveau contenu à celui existant
 	fs.appendFile('datas.txt', titleDatas, (err) =>{
 		if (err) throw err;
 		console.log("---------------");
 		console.log("It's saved !");
-		console.log("---------------");
-		console.log("Datas in the file :");
-		console.log(titleDatas);
 	});
 }

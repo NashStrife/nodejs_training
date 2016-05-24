@@ -12,5 +12,8 @@
     "trainning"
   ],
   "author": "Seb",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.20.0"
+  }
 }

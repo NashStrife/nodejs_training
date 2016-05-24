@@ -1,4 +1,6 @@
 const http = require('http');
+// fais appel à un module qu'on a crée en partant du nom du dossier racine du projet en fonction de l'environnement dans lequel on est
+const crawler = require(`${__dirname}/utils/htmlCrawler`);
 
 let url = process.argv[2];
 
@@ -20,7 +22,9 @@ if(!url){
 		// quand on a récupéré tous les bouts de code
 		res.on('end', () => {
 			// on affiche le total dans les logs
-			console.log(content);
+			// console.log(content);
+			// fais appel à la fonction du module externe en lui envoyant le txt et la balise recherchée
+			crawler.saveTagToFile(content, 'title');
 		});
 	}).on('error', err => {
 		console.log(`problem with request: ${err.message}`);

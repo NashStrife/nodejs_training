@@ -12,10 +12,11 @@ function Render(){
 	  	// vérifie si la page voulue existe via une fonction interne à notre PageModel()
 	  	let page = model.searchPageByUrl(req.url);
 
+	  	// si la page existe
 	  	if(page){
 	  		console.log(page);
-	  		// si la page existe on affiche ses données via une autre fonction de notre PageModel()
-	  		res.render(page.template, {layout: page.layout});
+	  		// rendu de la page avec les données contenues dans le fichier pages.json et les meta qui seront contenues dans la variable "meta"
+	  		res.render(page.template, {layout: page.layout, meta:page.meta});
 	  		// res.send(`Page Found !`);
 	  	} else{
 	  		// sinon on passe à la suite [ici la suite dans app.js est la gestion des erreurs]

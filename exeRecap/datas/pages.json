@@ -3,12 +3,18 @@
 		{
 			"url" : "/",
 			"layout" : "main",
-			"template" : "home"
+			"template" : "home",
+			"meta" : {
+				"title" : "Home page"
+			}
 		},
 		{
 			"url" : "/about",
 			"layout" : "main",
-			"template" : "about"
+			"template" : "about",
+			"meta" : {
+				"title" : "About page"
+			}
 		}
 	]
 }

@@ -5,7 +5,8 @@ function Erreur() {
 		let err = new Error('Not Found');
 		err.status = 404;
 		res.status(404);
-		res.send(`Page ${req.url} give this error : ${err.message}`);
+		// res.send(`Page ${req.url} give this error : ${err.message}`);
+		res.render('404', {err});
 	}
 
 	return middleware;

@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Index</title>
-	<!-- appelle la partiale materialize.hbs crée dans partials/header -->
-	{{>header/materialize}}
-</head>
+	{{>system/header}}
 <body>
 	<!-- appelle la partiale menu.hbs crée dans partials -->
 	{{>menu}}
-	<h2>Main Template</h2>
 	<!-- on insère le body ici qui sera contenu dans un fichié séparé et appellé via handlebars -->
 	{{{body}}}
 </body>

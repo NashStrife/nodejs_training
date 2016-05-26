@@ -8,7 +8,7 @@ const error = require(`${__dirname}/middleware/error`);
 const app = express();
 
 let hbsOptions = {
-	// defaultLayout : 'main',
+	defaultLayout : 'main',
 	extname : '.hbs'
 };
 

@@ -15,8 +15,8 @@ function Render(){
 	  	if(page){
 	  		console.log(page);
 	  		// si la page existe on affiche ses données via une autre fonction de notre PageModel()
-	  		res.render('page1', {layout: 'pages'});
-	  		res.send(`Page Found !`);
+	  		res.render(page.template, {layout: page.layout});
+	  		// res.send(`Page Found !`);
 	  	} else{
 	  		// sinon on passe à la suite [ici la suite dans app.js est la gestion des erreurs]
 	        next();

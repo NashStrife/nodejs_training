@@ -8,15 +8,16 @@ const error = require(`${__dirname}/middleware/error`);
 const app = express();
 
 let hbsOptions = {
-	defaultLayout : 'main',
-	extname : '.hbs',
-	helpers : {}
+	// defaultLayout : 'main',
+	extname : '.hbs'
 };
 
 let hbs = exphbs.create(hbsOptions);
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
+
+app.use(express.static('public'));
 
 // fait appel à morgan qui est un module ajouté à nodejs pour gérer les logs
 app.use(morgan('combined'));

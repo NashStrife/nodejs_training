@@ -12,14 +12,16 @@ const root = process.cwd();
 let hbs = exphbs.create({
 	defaultLayout : 'main',
 	extname : '.hbs',
-	// envoie des variables à la page avec des helpers
+	// envoie des variables à la page avec des helpers grace à handlebars
 	helpers : {
+		// renvoie la date
 		crie : function(){return new Date();},
+		// et on récupère une variable qu'on va transformer en majuscules et renvoyer
 		yell : function(str){return str.toUpperCase()}
 	}
 });
 
-// définit le moteur de rendu hbs en disant qu'on passe par l'objet créé + haut
+// définit le moteur de rendu hbs en disant qu'on passe par l'objet créé + haut au lieu de l'engine par défaut
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
@@ -28,11 +30,11 @@ app.use(express.static('public'));
 
 // quand on arrive avec 1 "/"
 app.get('/', function (req, res) {
-	// res.status(200);
+	// res.status(200);	// avec express plus besoin d'envoyer des statuts il le fait tt seul
   	// res.sendFile(`${root}/public/index.html`);
 
   	// affiche le contenu de home avec le template layouts/main.hbs définit en haut
-  	res.render('home');
+  	res.render('home',{data:{name:'sebastien', title:'training'}});
 });
 
 app.get('/page1', function (req, res) {

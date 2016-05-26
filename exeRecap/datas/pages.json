@@ -1,0 +1,14 @@
+{
+	"pages" : [
+		{
+			"url" : "/",
+			"layout" : "main",
+			"template" : "home"
+		},
+		{
+			"url" : "/about",
+			"layout" : "main",
+			"template" : "about"
+		}
+	]
+}

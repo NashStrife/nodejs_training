@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+let http = require('http');
+// on lui dit ou trouver le fichier de lancement de l'application
+let app = require(`${__dirname}/src/app`);
+// on définit le port comme étant 3000
+let port = normalizePort(process.env.PORT || '3000');
+// on lui applique le port
+app.set('port', port);
+
+// on crée le serveur sur base de l'application lancée dans /src/app.js
+let server = http.createServer(app);
+// on écoute le port définit pour le serveur
+server.listen(port);
+// en cas d'erreur appelle la fonction qui les gèrent créée plus bas
+server.on('error', onError);
+server.on('listening', onListening);
+
+// permet de gérer certains cas de mauvaise utilisation du serveur
+function normalizePort(val) {
+    let port = parseInt(val, 10);
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+    return false;
+}
+
+// gère différentes erreurs
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+    switch (error.code) {
+        case 'EACCES':
+            console.error(`${bind} requires elevated privileges`);
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(`${bind} is already in use`);
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+function onListening() {
+    let addr = server.address();
+    let bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+    console.log('Listening on ' + bind);
+}

@@ -1,20 +1,40 @@
 {
 	"pages" : [
 		{
+			"name" : "home",
 			"url" : "/",
 			"layout" : "main",
 			"template" : "home",
 			"meta" : {
 				"title" : "Home page"
-			}
+			},
+			"css" : [
+				"public/css/normalize.css", 
+				"public/css/main.css", 
+				"public/css/pages/home.css"
+			],
+			"js" : [
+				"public/js/main.js",
+				"public/js/pages/home.js"
+			]
 		},
 		{
+			"name" : "about",
 			"url" : "/about",
 			"layout" : "main",
 			"template" : "about",
 			"meta" : {
 				"title" : "About page"
-			}
+			},
+			"css" : [
+				"public/css/normalize.css", 
+				"public/css/main.css", 
+				"public/css/pages/about.css"
+			],
+			"js" : [
+				"public/js/main.js",
+				"public/js/pages/about.js"
+			]
 		}
 	]
 }

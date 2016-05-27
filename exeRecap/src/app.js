@@ -1,11 +1,13 @@
-const express = require('express');
-const morgan = require('morgan');
-const exphbs  = require('express-handlebars');
+let express = require('express');
+let morgan = require('morgan');
+let exphbs  = require('express-handlebars');
+let bodyParser = require('body-parser');
 // récupère notre beau middleware créé dans le dossier middleware
-const renderMwr = require(`${__dirname}/middleware/render`);
-const error = require(`${__dirname}/middleware/error`);
+let renderMwr = require(`${__dirname}/middleware/render`);
+let error = require(`${__dirname}/middleware/error`);
+let sendRoute = require(`${__dirname}/routes/sendRoute`);
 
-const app = express();
+let app = express();
 
 let hbsOptions = {
 	defaultLayout : 'main',
@@ -19,8 +21,14 @@ app.set('view engine', 'hbs');
 
 app.use(express.static('public'));
 
+// permet de récupérer des infos des requètes html et les traiter avec body-parser pour en faire des trings utilisables
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // fait appel à morgan qui est un module ajouté à nodejs pour gérer les logs
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
+
+// tout les "/send" passe par cette route
+app.use('/send', sendRoute);
 
 // on fait appel à la fonction renderMwr créée dans le middleware render.js grace au "return middleware;"
 app.use(renderMwr());

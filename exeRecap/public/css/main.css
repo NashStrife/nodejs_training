@@ -23,19 +23,20 @@ nav li{
 	display: inline-block;
 }
 
-nav a{
+nav li a{
 	display: block;
 	width: 200px;
 	line-height: 40px;
 	margin-top: 10px;
 	color: #FFF;
 	text-decoration: none;
+	border-right: 1px solid #FFF;
 }
 
 nav a:hover{
 	color: #000;
 }
 
-nav li:first-child a{
-	border-right: 1px solid #FFF;
+nav li:last-child a{
+	border-right: none;
 }

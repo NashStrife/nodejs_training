@@ -35,6 +35,23 @@
 				"public/js/main.js",
 				"public/js/pages/about.js"
 			]
+		},
+		{
+			"name" : "contact",
+			"url" : "/contact",
+			"layout" : "main",
+			"template" : "contact",
+			"meta" : {
+				"title" : "Contact page"
+			},
+			"css" : [
+				"public/css/normalize.css", 
+				"public/css/main.css", 
+				"public/css/pages/contact.css"
+			],
+			"js" : [
+				"public/js/main.js"
+			]
 		}
 	]
 }

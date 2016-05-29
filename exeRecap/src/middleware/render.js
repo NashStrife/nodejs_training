@@ -45,7 +45,10 @@ function Render(){
         page.scripts=`/scripts/${page.name}.min.js`;
         // rendu de la page avec les données contenues dans le fichier pages.json et les infos qui seront contenues dans la variable "model"
         // ici on utilise "response" et pas "res" car c'est une variable qui n'existe que dans la fonction middleware
-        response.render(page.template,{layout:page.layout,model:page});
+        response.render(page.template,{
+        	layout:page.layout,
+        	model:page
+        });
     }
 
 	// on retourne le middleware pour pouvoir appeller la fonction avec render() si on a définit const render = require(...);

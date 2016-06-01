@@ -1,14 +1,22 @@
 {
-    "friends" : [
-        {
-            "_id" : 1, 
+    "friends": [{
+            "_id": 1,
             "name": "john",
             "email": "john@mail.com"
         },
         {
-            "_id" : 2, 
+            "_id": 2,
             "name": "doe",
             "email": "doe@mail.com"
-        }
-    ]
+        },
+        {
+            "_id": 3,
+            "name": "toto",
+            "email": "toto@mail.com"
+        },
+        {
+            "_id": 4,
+            "name": "titi",
+            "email": "titi@mail.com"
+        }]
 }

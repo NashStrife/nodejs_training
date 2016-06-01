@@ -46,5 +46,12 @@ exports.post = function(req, res, next) {
 }
 
 exports.updateOne = function(req, res, next) {
-    logger.log("Edit one friend");
+    logger.log("controller updateOne");
+    if (_.isEmpty(req.body)) {
+        next(new Error('the request is empty wtf why ???'));
+    } else {
+        if (friend.updateOne(req.body)) res.json({
+            'message': ' update friend sucessful'
+        });
+    }
 }

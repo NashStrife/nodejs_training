@@ -13,7 +13,7 @@ router.route('/')
     .get(controller.get)
     // si on envoie des infos à "/api/friends/"
     .post(controller.post)
-    // si on veut modifier 1 ami
+    // si on veut modifier 1 ami on fait 1 put mais JAMAIS sur 1 slug [on envoie pas les donnée en clair dans l'url]
     .put(controller.updateOne);
     
 // url dynamique = SLUG

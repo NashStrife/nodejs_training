@@ -19,7 +19,9 @@ router.route('/')
 // url dynamique = SLUG
 router.route('/:id')
     // afficher l'ami dont on envoie l'id "/api/friends/2"
-    .get(controller.getOne);
+    .get(controller.getOne)
+    // le delete on peut le mettre sur un slug car on le fait qu'1 x [moins dangereux que de récupérer ou modifier des infos]
+    .delete(controller.delete);
     
 
 module.exports = router;

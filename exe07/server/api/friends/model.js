@@ -22,8 +22,8 @@ function Friend(){
         logger.log(obj);
         // on crée notre nouvel objet qui va contenir les nouvelles infos
         let insertObject = {
-            // on prend la longueur du tableau actuel et on fait +1 [si 2 objet enregistre 3]
-            '__id':datas.length +1,
+            // fait appel à une fonction privée pour trouver l'id du nouvel élément
+            '__id':nextId(),
             'name':obj.name,
             'email':obj.email
         };
@@ -54,7 +54,25 @@ function Friend(){
         save();
         return true ;
     }
-
+    
+    function deleteOne(item) {
+        logger.log(item);
+        // appelle lodash pour supprimer dans datas la valeur qui correspond à la valeur qu'il va trouver en fonction de l'item envoyé
+        _.remove(datas, _.find(datas, item));
+        // puis on enregistre les valeurs modifiées dans le json
+        save();
+        return true;
+    }
+    
+    function nextId() {
+        // maxBy de lodash va trouver l'objet dans datas qui contient l'id le + élevé et le .__id à la fin va récupérer la valeur de l'id de cet objet
+        // on le transforme en in et on le stock dans la variable max
+        let max =  parseInt((_.maxBy(datas,'__id').__id));
+        // on fait +1 pour avoir le prochain id
+        max++;
+        return max;
+    }
+    
     // pour éviter de faire plusieurs fois l'enregistrement on le fait 1x dans une fonction à part qu'on appelle au besoin
     function save(){
         // on prépare les données à être ajoutées dans le fichier en ajoutant la clé friends
@@ -71,6 +89,7 @@ function Friend(){
     that.getOne = getOne;
     that.post = post;
     that.updateOne = updateOne;
+    that.deleteOne = deleteOne;
     // la fonction save() n'est pas ajoutée en public au model car c'est une fonction interne => inaccessible depuis l'extérieur
     return that;
 }

@@ -37,6 +37,7 @@ exports.post = function(req, res, next) {
     } else {
         // si la methode post du model friend renvoie "true" [tout s'est bien passé]
         if(friend.post(req.body)) {
+            // on renvoie le msg en json car on est dans 1 api json donc + facil à gérer par la suite
             res.json({
                "message" : "post friend sucessfull" 
             });
@@ -54,4 +55,8 @@ exports.updateOne = function(req, res, next) {
             'message': ' update friend sucessful'
         });
     }
+}
+
+exports.delete = function(req, res, next) { 
+   if(friend.deleteOne(req.friend)) res.json({'message':'delete friend successfull'});
 }

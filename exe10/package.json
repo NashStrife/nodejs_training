@@ -1,0 +1,22 @@
+{
+  "name": "exe10",
+  "version": "0.0.1",
+  "description": "first app with mongodb",
+  "main": "server.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.13.4",
+    "lodash": "^4.13.1",
+    "mongodb": "^2.1.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "sebastien",
+  "license": "ISC"
+}

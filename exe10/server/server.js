@@ -7,7 +7,7 @@ let app = express();
 app.use('/api', api);
 
 app.use(function(err,req,res,next){
-   logger.log(err.message);
+   logger.warn(err.message);
    res.status(500).send('Oops server is in a bad mood !'); 
 });
 

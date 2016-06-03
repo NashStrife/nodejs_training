@@ -1,5 +1,6 @@
 let logger = require(`${process.cwd()}/server/utils/logger`);
-// cf explications avec les routes dans l'exe07
+// get MongoClient method from mongodb. It's a singleton so no () at the end [different than Router() in exe07]
+// singleton = instance of a function => we can do only one call
 let MongoClient = require('mongodb').MongoClient;
 
 exports.get = function(req, res, next) {

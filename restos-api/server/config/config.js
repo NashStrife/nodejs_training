@@ -1,5 +1,6 @@
 let config = {
-    logging : true
+    logging : true,
+    seed : true
 }
 
 module.exports = config;

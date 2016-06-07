@@ -14,6 +14,7 @@ exports.get = function(req, res, next) {
 
 exports.getOne = function(req, res, next) {
     logger.log("controller getOne");
+
     model.findById(req.params.id,
     // findById doesn't have a promise so we use a callback to manage errors
         function(err, doc) {
@@ -26,17 +27,23 @@ exports.getOne = function(req, res, next) {
 
 exports.post = function(req, res, next) {
     logger.log("controller post");
+    
     // we create a new model with the data to add to the db
-    let company = new model(req.body);
-    // and add it to the db
-    company.save(function(err) {
-        // handleError stop the application and sent an error msg while logger.log just sent an error msg
-        if (err) return handleError(err);
-        
-        res.json({
-            'message': 'data was saved'
+    let resto = new model(req.body);
+    let message = {
+        message: 'Document saved'
+    };
+    if(model.findOne(req.body.address, 'address')){
+        message.message = 'this address already exist'
+    } else {
+        // and add it to the db
+        resto.save(function(err) {
+            if (err) {
+                message = err;
+            }
         });
-    });
+    }
+    res.json(message);
 };
 
 exports.update = function(req, res, next) {
@@ -45,9 +52,13 @@ exports.update = function(req, res, next) {
     // update the data corresponding to the id with the new one in the request
     model.findByIdAndUpdate(req.body._id, req.body, 
         function(err, doc) {
-            if (err) logger.warn(err);
-            
-            res.json({'message':'document updated'});
+            let message = {
+                message: 'Document upated'
+            };
+            if (err) {
+                message = err;
+            }
+            res.json(message);
         }
     );
 };
@@ -58,9 +69,13 @@ exports.deleteById = function(req, res, next) {
     // get id from the parameters sent in the url
     model.findByIdAndRemove(req.params.id,
         function(err, doc) {
-            if (err) logger.warn(err);
-            
-            res.json({'message':'document removed'});
+            let message = {
+                message: 'Document removed'
+            };
+            if (err) {
+                message = err;
+            }
+            res.json(message);
         }
     );
 }

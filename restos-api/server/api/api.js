@@ -1,5 +1,5 @@
 let router = require('express').Router();
 
-router.use('/contacts', require('./contacts/routes'));
+router.use('/restos', require('./restos/routes'));
 
 module.exports = router;

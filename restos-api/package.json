@@ -1,7 +1,7 @@
 {
   "name": "exe10",
   "version": "0.0.1",
-  "description": "first app with mongodb",
+  "description": "Restaurants application",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.1",
@@ -9,15 +9,18 @@
     "express": "^4.13.4",
     "lodash": "^4.13.1",
     "mongodb": "^2.1.21",
-    "mongoose": "^4.4.19"
+    "mongoose": "^4.4.19",
+    "mongoose-validator": "^1.2.5"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./www"
   },
   "keywords": [
     "mongodb",
-    "nodejs"
+    "nodejs",
+    "restaurants"
   ],
   "author": "sebastien",
   "license": "ISC"

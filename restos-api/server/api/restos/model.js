@@ -50,12 +50,14 @@ let restoModel = function() {
         name : {
             type: String,
             required: true,
+            lowercase: true,
             validate: stringValidator
         },
         address : {
             street: {
                 type : String,
                 required : true,
+                lowercase: true,
                 validate: stringValidator
             },
             number: {
@@ -71,11 +73,13 @@ let restoModel = function() {
             town: {
                 type : String,
                 required : true,
+                lowercase: true,
                 validate: stringValidator
             },
             country: {
                 type : String,
                 required : true,
+                lowercase: true,
                 validate: stringValidator
             }
         },

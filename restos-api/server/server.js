@@ -15,9 +15,18 @@ if (config.seed) {
     require('./utils/seed');
 }
 
+// if we use a static route
+app.use(express.static('public'));
+app.use(bodyParser());
 app.use(bodyParser.json());
 
 app.use('/api', api);
+
+// we go to the / url and not /api/...
+app.use('/', function(req, res){
+    res.status(200);	// avec express plus besoin d'envoyer des statuts il le fait tt seul
+  	res.sendFile(`${process.cwd()}/public/index.html`);
+});
 
 app.use(function(err,req,res,next){
    logger.warn(err.message);

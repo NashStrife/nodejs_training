@@ -12,6 +12,7 @@ exports.get = function(req, res, next) {
     });
 };
 
+
 exports.post = function(req, res, next) {
     logger.log("controller post");
     
@@ -68,12 +69,12 @@ exports.deleteById = function(req, res, next) {
 exports.dynamicSearch = function(req, res, next) {
     logger.log("controller dynamicSearch");
 
-    let query = req.query
+    let query = req.query;
 
     model.find(query)
     .then(function(docs){
         // the result is not empty we have a corresponding result
-        if(docs.length){
+        if(docs.length) {
             res.json(docs);
         } else {
             res.json({message:`No result for the query ${JSON.stringify(query)}`});

@@ -99,6 +99,29 @@ let restoModel = function() {
         // updateAt will be auto updated when we modify data with the current date
         updatedAt : { type : Date, default : Date.now}
     });
+
+    // we use a hook to say "when you want to save data using the model do this before"
+    schema.pre('save', function(next) {
+        // to avoid a scoop problem => this self contain now the data
+        var self = this;
+        // use the find function of the constructor from the model
+        this.constructor.find({
+            'address.street': self.address.street,
+            'address.number': self.address.number,
+            'address.zip': self.address.zip,
+            'address.town': self.address.town,
+            'address.country': self.address.country
+        }, function(err, docs) {
+            // if the address is different
+            if (!docs.length) {
+                next();
+            // if the address is the same
+            } else {
+                next(new Error("Restaurants exists!"));
+            }
+        });
+    });
+
     // we return the schema called "resto" with informations of the schema for the collection "restos" 
     return mongoose.model('resto', schema,'restos');
 };

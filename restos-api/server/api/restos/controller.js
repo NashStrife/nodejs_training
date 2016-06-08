@@ -12,39 +12,24 @@ exports.get = function(req, res, next) {
     });
 };
 
-exports.getOne = function(req, res, next) {
-    logger.log("controller getOne");
-
-    model.findById(req.params.id,
-    // findById doesn't have a promise so we use a callback to manage errors
-        function(err, doc) {
-            if (err) logger.warn(err);
-            
-            res.json(doc);
-        }
-    );
-}
-
 exports.post = function(req, res, next) {
     logger.log("controller post");
     
     // we create a new model with the data to add to the db
     let resto = new model(req.body);
-    let message = {
-        message: 'Document saved'
-    };
-    if(model.findOne(req.body.address, 'address')){
-        message.message = 'this address already exist'
-    } else {
-        // and add it to the db
-        resto.save(function(err) {
-            if (err) {
-                message = err;
-            }
-        });
-    }
-    res.json(message);
+    
+    // and add it to the db
+    resto.save(function(err) {
+        let message = {
+            message: 'Document saved'
+        };
+        if (err) {
+            message = err.message;
+        }
+        res.json(message);
+    });
 };
+
 
 exports.update = function(req, res, next) {
     logger.log("controller Update")
@@ -56,7 +41,7 @@ exports.update = function(req, res, next) {
                 message: 'Document upated'
             };
             if (err) {
-                message = err;
+                message = err.message;
             }
             res.json(message);
         }
@@ -73,9 +58,25 @@ exports.deleteById = function(req, res, next) {
                 message: 'Document removed'
             };
             if (err) {
-                message = err;
+                message = err.message;
             }
             res.json(message);
         }
     );
 }
+
+exports.dynamicSearch = function(req, res, next) {
+    logger.log("controller dynamicSearch");
+
+    let query = req.query
+
+    model.find(query)
+    .then(function(docs){
+        // the result is not empty we have a corresponding result
+        if(docs.length){
+            res.json(docs);
+        } else {
+            res.json({message:`No result for the query ${JSON.stringify(query)}`});
+        }
+    });
+};

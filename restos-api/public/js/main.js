@@ -9,6 +9,7 @@
         $('.add-resto').click(function(e){
             e.preventDefault();
             showHide(".view-form");
+            $('#submit-Resto').val("Send Data");
         });
 
         $('.back-to-list').click(function(e){
@@ -19,7 +20,8 @@
         // submit a form
         $('#submit-Resto').click(function(e){
             e.preventDefault();
-            submitResto(this);
+            var form = $(this).parent().parent()
+            submitForm(form);
         });
     });
 
@@ -124,10 +126,9 @@
         form.find("#submit-Resto").val("Update Resto");
     }
 
-    function submitResto(elem) {
+    function submitForm(form) {
         var url = "/api/restos/";
-        var form = $(elem).parent().parent();
-        // var nameSent = form.find('#name-input').val();
+        var type;
         var newResto = {};
         newResto.name = form.find('#name-input').val();
         newResto.address = {};
@@ -142,16 +143,30 @@
         // newResto.pictures.title = form.find('#pic-title-input').val();
         // newResto.pictures.link = form.find('#pic-link-input').val();
         // newResto.url = form.find('#url-input').val();
-        newResto.createdAt = Date.now();
+
+        // if it's a new resto
+        if(form.find("#submit-Resto").val() === "Send Data"){
+            newResto.createdAt = Date.now();
+            type = "post";
+        // if we try to update
+        } else {
+            newResto.updatedAt = Date.now();
+            type = "post";
+        }
         // console.log(newResto);
+
+        saveResto(newResto, url, type);
+    }
+
+    function saveResto(resto, url, type){
         $.ajax({
             url : url,
             dataType : "json",
-            type : "post",
-            data : newResto,
+            type : type,
+            data : resto,
             success : function(data) {
-                showMessage(data);
                 showList();
+                showMessage(data.message);
             },
             error : function(err) {
                 showError(err)

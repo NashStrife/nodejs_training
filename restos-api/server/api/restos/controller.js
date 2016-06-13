@@ -20,12 +20,12 @@ exports.post = function(req, res, next) {
     let resto = new model(req.body);
     
     // and add it to the db
-    resto.save(function(err) {
+    resto.save(function(err, data) {
         let message = {
             message: 'Document saved'
         };
         if (err) {
-            message = err.message;
+            message.message = err.message;
         }
         res.json(message);
     });
@@ -42,7 +42,7 @@ exports.update = function(req, res, next) {
                 message: 'Document upated'
             };
             if (err) {
-                message = err.message;
+                message.message = err.message;
             }
             res.json(message);
         }
@@ -59,7 +59,7 @@ exports.deleteById = function(req, res, next) {
                 message: 'Document removed'
             };
             if (err) {
-                message = err.message;
+                message.message = err.message;
             }
             res.json(message);
         }
@@ -70,7 +70,7 @@ exports.dynamicSearch = function(req, res, next) {
     logger.log("controller dynamicSearch");
 
     let query = req.query;
-
+    console.log(req.query);
     model.find(query)
     .then(function(docs){
         // the result is not empty we have a corresponding result

@@ -5,10 +5,16 @@
     <title>Index</title>
 </head>
 <body>
-    <h1>Restaurants Api</h1>
-    <button class="showForm">Add a new restaurant</button>
-    <button class="backToList">Go back to list</button>
-    <div class="formContainer">
+    <nav>
+        <h1>Restaurants Api</h1>
+        <ul>
+            <li><a href="#" class="add-resto">Add a new restaurant</a></li>
+            <li><a href="#" class="back-to-list">List of Restaurants</a></li>
+        </ul>
+    </nav>
+    <!--<button class="showForm">Add a new restaurant</button>
+    <button class="back-to-list">Go back to list</button>-->
+    <section class="view-form">
         <form>
             <h2>Add a new restaurant</h2>
             <p>
@@ -60,10 +66,10 @@
                 <label for="url">URL : </label> <input type="url" name="url" id="url-input" value="http://www.lesambreetmeuse.be/">
             </p>-->
             <p>
-                <input type="submit" value="Send Data" id="submitResto">
+                <input type="submit" value="Send Data" id="submit-Resto">
             </p>
         </form>
-    </div>
+    </section>
     
 
     <script type="text/javascript" src="/lib/jquery-1.12.3.min.js"></script>

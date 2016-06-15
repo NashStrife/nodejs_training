@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mise en place du JS</title>
+    <!-- load the angular lib in the header cause we use it inside the HTML -->
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>Mise en place du JS</h1>
+
+    <!--<input type="text" ng-model="name" value="Sebastien">-->
+    <div ng-controller="mainController">
+        <!-- value is now define inside the js thx to the mainController -->
+        <input type="text" ng-model="name"> <br>
+        {{name}}
+    </div>
+    
+    <!-- we often insert our angular script in the head but we can do it at the bottom of the body -->
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

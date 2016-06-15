@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction</title>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<!-- ng-app dit à la page qu'on fait 1 app angular js-->
+<body ng-app>
+    <h1>Introduction</h1>
+    {{ 1+1}}
+
+    <!-- ng-init définit 1 valeur à 1 variable -->
+    <div ng-init="test='bonjour'">
+        {{test}}
+    </div>
+
+    <hr> <!-- ---------------------------------------------------------------- -->
+
+    <div>
+        <!-- ng-model définit 1 variable dans laquelle on va stocker la valeur de l'input-->
+        <label>Entrez votre nom : <input type="text" ng-model="name"></label>
+        {{name}} <br>
+        Bonjour {{name}} ! <br>
+        {{'Bonjour ' + name + ' !'}}
+    </div>
+
+    <hr> <!-- ---------------------------------------------------------------- -->
+    
+    <div>
+        <!-- ng-model définit 1 variable dans laquelle on va stocker la valeur de l'input-->
+        <input type="text" ng-model="nbr1"><br>
+        <input type="text" ng-model="nbr2"><br>
+        Somme = {{(nbr1-0) + (nbr2-0)}}
+    </div>
+
+    <hr> <!-- ---------------------------------------------------------------- -->
+
+    <div ng-init="users=['Jonathan','Sebastien','Mathieu','Quentin','Arnaud']">
+        {{users}}
+        <ul>
+            <!-- répète le li tant qu'il y a des noms dans le tableau "users" et le stock dans la variable "user"-->
+            <!-- | uppercase permet de filtrer et de les afficher en majuscules -->
+            <li ng-repeat="user in users">{{user | uppercase}}</li>
+        </ul>
+    </div>
+    
+    <hr> <!-- ---------------------------------------------------------------- -->
+    
+    <div ng-init="students=[{
+            'username' : 'Mathieu', 
+            'content' : 'Kiwi !'
+            },{
+            'username' : 'Jonathan', 
+            'content' : 'Du du du du duel !'
+            },{
+            'username' : 'Quentin', 
+            'content' : 'Huuuuuuuuu!'
+            }]">
+            <ul>
+                <!-- affiche par ordre alphabétique en fonction du username uniquement les objets contenant 'a' -->
+                <li ng-repeat="student in students | orderBy : 'username' | filter : 'a'">
+                    Nom : {{student.username}}<br> 
+                    Message : {{student.content}}
+                </li>
+            </ul>
+
+            <hr> <!-- ---------------------------------------------------------------- -->
+
+            <!-- définit l'ordre d'affichage en fonction de ce qu'on sélectionne' -->
+            <p>
+                <input type="radio" name="ord_by" id="ord-user" value="username" ng-model="order">
+                <label for="ord-user">Trier par nom</label>
+                <input type="radio" name="ord_by" id="ord-content" value="content" ng-model="order">
+                <label for="ord-content">Trier par Message</label>
+            </p>
+            <!-- filtre uniquement les username en fonction de ce qu'on tape -->
+            <label> Rechercher : <input type="text" ng-model="student_search.username"></label>
+            <ul>
+                <li ng-repeat="student in students | orderBy : order | filter : student_search">
+                    Nom : {{student.username}}<br> 
+                    Message : {{student.content}}
+                </li>
+            </ul>
+    </div>
+</body>
+</html>

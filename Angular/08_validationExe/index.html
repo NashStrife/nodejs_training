@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Exe</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+</head>
+<body ng-app="app">
+    <h1>Validation Exe</h1>
+
+    <div ng-controller="mainCtrl">
+        <nav>
+            <ul>
+                <li ng-repeat="tab in tabList" ng-class="{active:isSet(tab.title)}">
+                    <a href ng-click="setTab(tab.title)">{{tab.title}}</a><a href ng-click="delTab(tab.title)">X</a>
+                </li>
+            </ul>
+            <div ng-repeat="tab in tabList" ng-show="isSet(tab.title)">
+                {{tab.content}}
+            </div>
+
+        </nav>
+
+        <h2>Add a new tab :</h2>
+        <div class="error" ng-if="error && myForm.title.$invalid">Error on title: <span>Required</span></div>
+        <div class="error" ng-if="error && myForm.content.$invalid">Error on content: <span>Required</span></div>
+        <form name="myForm">
+            <ul>
+                <li><label for="title">Title : </label></li>
+                <li><input type="text" id="title" name="title" ng-model="titleModel" required ></li>
+
+                <li><label for="content">Content : </label></li>
+                <li><input type="text" id="content" name="content" ng-model="contentModel" required ></li>
+            </ul>
+            <button ng-click="testForm(myForm.$valid)">Ajouter un onglet</button>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+</body>
+</html>

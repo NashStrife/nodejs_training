@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Event</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript" src="../../lib/angular.min.js"></script>
+</head>
+<body ng-app="app">
+  <div class="container" ng-controller="mainCtrl">
+    <ul class="nav nav-tabs">
+      <li ng-repeat="tab in tabs" ng-class="{active : isActive($index)}">
+        <a href="#" ng-click="setActive($index)">{{tab.title}} <span class="glyphicon glyphicon-remove-sign cred" ng-click="removeTab($index)" aria-hidden="true"></span></a></li>
+    </ul>
+    <div class="tab-content">
+      <h2>{{tabs[active].title}}</h2>
+      <p>{{tabs[active].content}}</p>
+    </div>
+
+    <h3>Ajouter un onglet</h3>
+    <form name="myForm" class="form-inline">
+      <div class= "alert alert-warning" ng-if="erreur &&  myForm.$invalid">
+        <p><span class="glyphicon glyphicon-warning-sign bgred"></span> <strong>Attention, il y a des erreurs!</strong></p>
+        <div ng-if="myForm.title.$invalid">
+          Dans le titre:
+          <ul>
+            <li ng-repeat="(type, error) in myForm.title.$error">{{type}}</li>
+          </ul>
+        </div>
+        <div ng-if="myForm.content.$invalid">
+          Dans le contenu:
+          <ul>
+            <li ng-repeat="(type, error) in myForm.content.$error">{{type}}</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p><label for="title">Titre</label></p>
+        <p><input type="text" name="title" id="title" ng-model="tab.title" required></p>
+      </div>
+      <div>
+        <p><label for="content">Contenu</label></p>
+        <p><input type="text" name="content" id="content" ng-model="tab.content" required></p>
+      </div>
+      <button class="btn btn-success" ng-click="addTab(myForm.$valid)"><span class="glyphicon glyphicon-plus"></span> Ajouter un onglet</button>
+    </form>
+  </div>
+
+  <!-- scripts -->
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
+</body>
+</html>

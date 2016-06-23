@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>List restaurants</title>
+    <script type="text/javascript" src="../lib/angular.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body ng-app="restoApp">
+    <div class="container"" >
+        <h1>List of restaurants</h1>
+        <section ng-controller="listResto">
+            <nav>
+                <div>
+                    <label>Search : <input type="text" ng-model="search" placeholder="Grandisimo"></label>
+                </div>
+                <div>
+                    Order by :
+                    <select ng-model="order">
+                        <option value="name">Name</option>
+                        <option value="address.city">City</option>
+                    </select>
+                    <label>Growing <input type="radio" ng-model="direction" value=""></label>
+                    <label>Descending <input type="radio" ng-model="direction" value="reverse"></label>
+                </div>
+            </nav>
+            <article ng-repeat="resto in restos | filter : search | orderBy : order:direction">
+                <h2>{{resto.name}} <span>{{resto.rating}}/10</span></h2>
+                <div>
+                    <img ng-src="img/{{resto.photo}}.jpg" alt="{{resto.name}}" width="400" height="250">
+                </div><!--
+                
+             --><div>
+                    <ul>
+                        <li><strong>Address :</strong>
+                            <ul>
+                                <li>{{resto.address.street}}, {{resto.address.number}}</li>
+                                <li>{{resto.address.zip}} {{resto.address.city}}</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Phone :</strong> {{resto.phone}}</li>
+                        <li><strong>Web : </strong><a href="{{resto.web}}">{{resto.web}}</a></li>
+                        <li><strong>Cooks type :</strong>
+                            <ul>
+                                <li ng-repeat="type in resto.types">
+                                    {{type}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+    </div>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+</body>
+</html>

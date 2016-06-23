@@ -13,48 +13,38 @@ controllers.controller('mainCtrl', ['$scope', function($scope){
 
     ];
 
-    $scope.tabSel = $scope.tabList[0].title;
-    console.log($scope.tabSel);
+    // set the base index to 0 to set the first tab "active" by default
+	$scope.active = 0;
+    // for when we will create a new tab
+	$scope.tab={};
+    // to manage submit errors
+	$scope.error= false;
 
-    $scope.setTab = function(tabName){
-        console.log(tabName);
-        $scope.tabSel = tabName;
-    }
+	$scope.isActive = function(index){
+		// get the selected index from the menu and compare it to "active". return true or false
+		return $scope.active === index;
+	}
 
-    $scope.isSet = function(tabName){
-        return $scope.tabSel === tabName;
-    }
+	$scope.setActive = function(index){
+		// change the value of active by the index of the tab we click on it
+		$scope.active = index;
+	}
 
-    $scope.delTab = function(tabName){
-        console.log("delete "+ tabName);
+	$scope.removeTab = function(index){
+		// delete selected element from the tab
+		$scope.tabList.splice(index,1);
+	}
 
-        // $scope.tabList will contain the new array with elements that pass the test
-        $scope.tabList = $scope.tabList.filter(function(el) {
-                // console.log(el.title);
-                // console.log(el.title !== tabName);
-                return el.title !== tabName;
-            });
-    }
-
-    // test for the form validation
-    $scope.error = false;
-    // get true or false in function of the $valid value of Angular inside the form
-    $scope.testForm = function(isValid){
-        if(isValid){
-            alert("Form successfully submitted !");
-            // prepare the new element
-            let newTab = {};
-            newTab.title = $scope.titleModel;
-            newTab.content = $scope.contentModel;
-
-            console.log(newTab);
-            // add it inside the Array
-            $scope.tabList.push(newTab);
-
-            // set the error back to false for a new future submit
-            $scope.error = false;
-        } else {
-            $scope.error = true;
-        }
-    }
+	$scope.addTab = function(isValid){
+		if(isValid){
+			$scope.tabList.push({title : $scope.tab.title, content : $scope.tab.content});
+            // reset the var after submitting the form
+			$scope.tab.title = "-";
+			$scope.tab.content = "-";
+			$scope.error = false;
+		}
+		else{
+			$scope.error = true;
+		}
+	}
 }]);

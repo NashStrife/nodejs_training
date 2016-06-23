@@ -1,0 +1,22 @@
+body {
+/*	margin: 0 auto;
+	padding: 0;*/
+}
+
+/*EXERCICE*/
+
+.bgred{
+	background-color: #d9534f;
+	color: #fff;
+	padding: 3px;
+	border-radius: 1px;
+}
+
+.cred{
+	color: #d9534f;
+}
+
+h4 span{
+	font-weight: 600;
+	font-size: 0.7em;
+}

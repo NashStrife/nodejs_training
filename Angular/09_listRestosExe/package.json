@@ -1,0 +1,16 @@
+{
+  "name": "09_resto_exe",
+  "version": "0.0.1",
+  "description": "angular app with json file and node js",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Sebastien",
+  "license": "ISC"
+}

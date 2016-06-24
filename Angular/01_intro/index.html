@@ -74,10 +74,10 @@
                 <input type="radio" name="ord_by" id="ord-content" value="content" ng-model="order">
                 <label for="ord-content">Trier par Message</label>
             </p>
-            <!-- filtre uniquement les username en fonction de ce qu'on tape -->
-            <label> Rechercher : <input type="text" ng-model="student_search.username"></label>
+            <!-- filtre uniquement le contenu en fonction de ce qu'on tape -->
+            <label> Rechercher : <input type="text" ng-model="student_search"></label>
             <ul>
-                <li ng-repeat="student in students | orderBy : order | filter : student_search">
+                <li ng-repeat="student in students | filter:{content:student_search} | orderBy:order">
                     Nom : {{student.username}}<br> 
                     Message : {{student.content}}
                 </li>

@@ -22,10 +22,15 @@ restoControllers.controller('detailResto', ['$scope', '$http', '$routeParams',
 		$scope.restos = result;
 		// get the item that we want details thx to the id sent in the route
 		$scope.whichItem = $routeParams.itemId;
-		$scope.prevItem = $scope.whichItem - 1;
+
 		$scope.nextItem = parseInt($scope.whichItem) + 1;
 		if($scope.nextItem >= $scope.restos.length){
 			$scope.nextItem = 0;
+		}
+
+		$scope.prevItem = parseInt($scope.whichItem) - 1;
+		if($scope.prevItem < 0){
+			$scope.prevItem = $scope.restos.length-1;
 		}
 	});
 }]);

@@ -6,7 +6,7 @@ body {
 .container {
 	margin: 0 auto;
 	padding: 0;
-	max-width: 600px;
+	width: 600px;
 }
 
 h1 {
@@ -16,15 +16,33 @@ h1 {
 
 nav {
 	background-color: darkslategray;
-	margin-bottom: 10px;
+	/*margin-bottom: 10px;*/
 	padding: 10px;
 	color: #eee;
 	line-height: 35px;
 }
 
-/*nav div:last-child {
-	margin-top: 5px;
-}*/
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav li a {
+	display: block;
+	color: #eee;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: firebrick;
+	text-align: center;
+	width: 100px;
+	border-radius: 5px;
+}
 
 nav input[type="text"] {
 	width: 400px;
@@ -32,25 +50,39 @@ nav input[type="text"] {
 
 article {
 	background-color: #fff;
-	padding: 10px;
-	margin-bottom: 10px;
+	padding: 15px;
+	box-sizing: border-box;
+	/*margin-bottom: 10px;*/
+	border-bottom: 1px solid #333;
 }
 
-article h2 {
+article header {
 	margin: 0 0 10px 0;
+	line-height: 40px;
+}
+article header h2 {
+	display: inline-block;
+	margin: 0;
 }
 
-article h2 span{
-	font-weight: 600;
-	/*font-size: 0.7em;*/
-	color: blueviolet;
+article header a {
+	color: #333;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
 	float: right;
+}
+
+article header a:hover{
+	color: orange;
 }
 
 article div{
 	box-sizing: border-box;
 	display: inline-block;
-	width: 150px;
+	width: 200px;
+	vertical-align: top;
+	margin: 0 20px 0 0;
 }
 
 article img{
@@ -58,17 +90,22 @@ article img{
 	height: auto;
 }
 
-article div:last-child {
-	width: 430px;
-	vertical-align: top;
-	padding-left: 30px;
+article div span{
+	font-weight: bold;
+	color: blueviolet;
+	line-height: 30px;
 }
 
 article div ul {
 	list-style: none;
 }
 
-article div > ul {
+article div ul {
 	margin: 0;
 	padding: 0;
+}
+
+article div:last-child {
+	margin: 0;
+	width: 300px;
 }

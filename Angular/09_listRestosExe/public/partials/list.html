@@ -14,14 +14,44 @@
             <label>Descending <input type="radio" ng-model="direction" value="reverse"></label>
         </div>
     </nav>
+
     <article ng-repeat="resto in restos | filter : search | orderBy : order:direction">
         <!--use indexOf on the array "restos" to know the index of the resto that we click on-->
-        <h2><a href="#/detail/{{restos.indexOf(resto)}}">{{resto.name}}</a> <span>{{resto.rating}}/10</span></h2>
+        <header>
+            <h2>{{resto.name}}</h2> <a href="#/detail/{{restos.indexOf(resto)}}">Show details > </a>
+        </header>
+        <div>
+            <img ng-src="img/{{resto.photo}}.jpg" alt="{{resto.name}}" width="400" height="250">
+        </div><!--
+     --><div>
+            <ul>
+                <li><span>Note : {{resto.rating}}/10</span></li>
+                <li><strong>Address :</strong> {{resto.address.city}}</li>
+                <li><strong>Cooks type :</strong>
+                    <ul>
+                        <li ng-repeat="type in resto.types">
+                            {{type}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </article>
+
+</section>
+
+
+
+
+
+<!--<article ng-repeat="resto in restos | filter : search | orderBy : order:direction">-->
+        <!--use indexOf on the array "restos" to know the index of the resto that we click on-->
+        <!--<h2><a href="#/detail/{{restos.indexOf(resto)}}">{{resto.name}}</a> <span>{{resto.rating}}/10</span></h2>
         <div>
             <img ng-src="img/{{resto.photo}}.jpg" alt="{{resto.name}}" width="400" height="250">
         </div><!--
         
-        --><div>
+        <!--<div>
             <ul>
                 <li><strong>Address :</strong>
                     <ul>
@@ -41,5 +71,4 @@
                 </li>
             </ul>
         </div>
-    </article>
-</section>
+    </article>-->

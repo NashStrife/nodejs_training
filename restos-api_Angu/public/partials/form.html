@@ -4,30 +4,30 @@
             <li><a href="#/"> Retour </a></li>
         </ul>
     </nav>
-    <form>
+    <form ng-submit="addResto()">
         <h2>Add a new restaurant</h2>
-        <p id="id-champ">
+        <!--<p id="id-champ">
             <label for="id">ID : </label> <input type="text" name="id">
-        </p>
+        </p>-->
         <p>
-            <label for="name">Name : </label> <input type="text" name="name" id="name-input" value="le sambre et meuse">
+            <label for="name">Name : </label> <input type="text" name="name" id="name-input" ng-model="resto.name">
         </p>
         <fieldset>
             <legend>Address</legend>
             <p>
-                <label for="street">Street : </label> <input type="text" name="street" id="street-input" value="rue edmond schmidt">
+                <label for="street">Street : </label> <input type="text" name="street" id="street-input" ng-model="resto.address.street">
             </p>
             <p>
-                <label for="number">Number : </label> <input type="text" name="number" id="number-input" value ="2">
+                <label for="number">Number : </label> <input type="text" name="number" id="number-input" ng-model="resto.address.number">
             </p>
             <p>
-                <label for="zip">ZIP : </label> <input type="text" name="zip" id="zip-input" value="6280">
+                <label for="zip">ZIP : </label> <input type="text" name="zip" id="zip-input" ng-model="resto.address.zip">
             </p>
             <p>
-                <label for="town">Town : </label> <input type="text" name="town" id="town-input" value="gerpinnes">
+                <label for="town">Town : </label> <input type="text" name="town" id="town-input" ng-model="resto.address.town">
             </p>
             <p>
-                <label for="country">Country : </label> <input type="text" name="country" id="country-input" value="belgium">
+                <label for="country">Country : </label> <input type="text" name="country" id="country-input" ng-model="resto.address.country">
             </p>
         </fieldset>
         <!--<p>
@@ -58,7 +58,7 @@
             <label for="url">URL : </label> <input type="url" name="url" id="url-input" value="http://www.lesambreetmeuse.be/">
         </p>-->
         <p>
-            <input type="submit" id="submit-Resto">
+            <input type="submit" value="Send">
         </p>
     </form>
 </section>

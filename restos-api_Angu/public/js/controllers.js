@@ -45,5 +45,22 @@ restoControllers.controller('DetailRestoCtrl', ['$scope', '$http', '$routeParams
 restoControllers.controller('AddRestoCtrl', ['$scope', '$http', '$routeParams','$resource', 
 	function($scope, $http, $routeParams, $resource){
 
+		$scope.addResto = function(){
+		if(isValid){
+			var restaurants = $resource("/api/restos");
+			restaurants.query(function(result){
 
+				$scope.tabList.push({title : $scope.tab.title, content : $scope.tab.content});
+				// reset the var after submitting the form
+				$scope.tab.title = "-";
+				$scope.tab.content = "-";
+				$scope.error = false;
+			});
+			
+		}
+		else{
+			$scope.error = true;
+		}
+	}
+		
 }]);

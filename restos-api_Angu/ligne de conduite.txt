@@ -1,0 +1,11 @@
+Public:
+	lister toutes
+	lister 1 seul /nom /id
+	filtrer sur base de 
+		la quotation
+		CP
+		type cuisine
+	afficher d�tails
+Admin:
+	CRUD
+	

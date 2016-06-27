@@ -1,0 +1,156 @@
+[
+	{
+		"photo" : "resto-01",
+		"name" : "Delices Chinois",
+		"phone" : "+32 65 56 78 89",
+		"web" : "www.deliceschinois.com",
+		"rating" : 7.5,
+		"types" : ["chinoise"],
+		"address" : {
+			"street" : "Rue du vase",
+			"number" : 77,
+			"city" : "Mons",
+			"zip" : 7000
+		}
+	},
+	{
+		"photo" : "resto-02",
+		"name" : "La bordure",
+		"phone" : "+32 12 34 56 78",
+		"web" : "www.labordure.com",
+		"rating" : 7.0,
+		"types" : ["traditionnelle", "française"],
+		"address" : {
+			"street" : "Rue de France",
+			"number" : 2,
+			"city" : "Namur",
+			"zip" : 5000
+		}
+	},
+	{
+		"photo" : "resto-03",
+		"name" : "La pré vert",
+		"phone" : "+32 71 51 53 57 59",
+		"web" : "www.prevert.com",
+		"rating" : 6.5,
+		"types" : ["traditionnelle", "végétarienne"],
+		"address" : {
+			"street" : "De la montagne",
+			"number" : 175,
+			"city" : "Charleroi",
+			"zip" : 6000
+		}
+	},
+	{
+		"photo" : "resto-04",
+		"name" : "L'îlot",
+		"phone" : "+32 78 45 12 00",
+		"web" : "www..com",
+		"rating" : 7.0,
+		"types" : ["américaine"],
+		"address" : {
+			"street" : "Avenue des 44 trous",
+			"number" : 39,
+			"city" : "Liège",
+			"zip" : 4000
+		}
+	},
+	{
+		"photo" : "resto-05",
+		"name" : "Hérisson",
+		"phone" : "+32 99 56 23 45",
+		"web" : "www.herisson.com",
+		"rating" : 8.0,
+		"types" : ["végétarienne", "asiatique"],
+		"address" : {
+			"street" : "Boulevard Picots",
+			"number" : 88,
+			"city" : "Mons",
+			"zip" : 7000
+		}
+	},
+	{
+		"photo" : "resto-06",
+		"name" : "Grandisimo",
+		"phone" : "+32 12 45 54 21 ",
+		"web" : "www..com",
+		"rating" : 7.0,
+		"types" : ["espagnole", "traditionnelle"],
+		"address" : {
+			"street" : "Rue Du Bouchon",
+			"number" : 47,
+			"city" : "Liège",
+			"zip" : 4000
+		}
+	},
+	{
+		"photo" : "resto-07",
+		"name" : "Au kiwi ravi",
+		"phone" : "+32 95 75 15 25",
+		"web" : "www.Kiwiwi.com",
+		"rating" : 8.5,
+		"types" : ["végétarienne", "française", "traditionnelle"],
+		"address" : {
+			"street" : "De l'oiseau",
+			"number" : 32,
+			"city" : "Charleroi",
+			"zip" : 6000
+		}
+	},
+	{
+		"photo" : "resto-08",
+		"name" : "Abuelo",
+		"phone" : "+32 22 55 88 11",
+		"web" : "www.abuelo.com",
+		"rating" : 6.0,
+		"types" : ["espagnole", "traditionnelle"],
+		"address" : {
+			"street" : "Rue De l'espagnol",
+			"number" : 87,
+			"city" : "Mons",
+			"zip" : 7000
+		}
+	},
+	{
+		"photo" : "resto-09",
+		"name" : "Méditerrannée bleue",
+		"phone" : "+32 45 97 35 20",
+		"web" : "www.bluemediterranean.com",
+		"rating" : 6.5,
+		"types" : ["espagnole", "italienne", "marocaine", "grèque"],
+		"address" : {
+			"street" : "Avenue De Rome",
+			"number" : 12,
+			"city" : "Amsterdam",
+			"zip" : 1258
+		}
+	},
+	{
+		"photo" : "resto-10",
+		"name" : "kakarott",
+		"phone" : "+32 97 64 31 55",
+		"web" : "www.sangoku.com",
+		"rating" : 5.5,
+		"types" : ["asiatique", "chinoise", "américaine"],
+		"address" : {
+			"street" : "De l'avenue",
+			"number" : 10,
+			"city" : "Namur",
+			"zip" : 5000
+		}
+	},
+	{
+		"photo" : "resto-11",
+		"name" : "EAT 'N SLEEP",
+		"phone" : "+32 76 32 05 04",
+		"web" : "www.eatnsleep.com",
+		"rating" : 0.0,
+		"types" : ["asiatique", "marocaine", "chinoise"],
+		"address" : {
+			"street" : "Rue du Dortoir",
+			"number" : 95,
+			"city" : "Charleroi",
+			"zip" : 6000
+		}
+	}
+]

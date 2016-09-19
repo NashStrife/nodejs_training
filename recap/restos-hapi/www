@@ -1,0 +1,11 @@
+'use strict';
+
+let server = require('./server/server');
+let logger = require('./server/utils/logger');
+// Start the server
+server.start(function(err){
+    if(err)
+        logger.warn(err);
+
+    logger.log('Server running at:', server.info.uri);
+});

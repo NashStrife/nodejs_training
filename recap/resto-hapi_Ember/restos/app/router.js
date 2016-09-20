@@ -6,7 +6,11 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
+// route created with the command "ember g route myRoute"
 Router.map(function() {
+  this.route('details');
+  this.route('form');
+  this.route('list');
 });
 
 export default Router;

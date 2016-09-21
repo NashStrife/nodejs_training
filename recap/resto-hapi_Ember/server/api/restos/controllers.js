@@ -7,8 +7,28 @@ exports.get = function(req, res) {
     logger.log("GET restos controller");
 
     model.find()
-    .then(function(data){
-        res(data);
+    .then(function(docs){
+        let restos = [];
+        // manip to edit the JSON format to fit with the format needed by Ember
+        docs.map(function(restoFromDb){
+            let resto = {
+                type: "restos",
+                id: restoFromDb._id,
+                attributes: restoFromDb
+            };
+            restos.push(resto);
+        });
+        res({data: restos});
+        // res(docs);
+        // res({
+        //     "data": [
+        //         {
+        //             "type": "restos",
+        //             "id": "GRID-1-20160429171514.897",
+        //             "attributes": {}
+        //         }
+        //     ]
+        // })
     });
 };
 
@@ -66,10 +86,10 @@ exports.dynamicSearch = function(req, res) {
     let query = req.query;
     console.log(req.query);
     model.find(query)
-    .then(function(data){
+    .then(function(docs){
         // we have a corresponding result
-        if(data.length) {
-            res({error_code:0,data: data});
+        if(docs.length) {
+            res({error_code:0,data: docs});
         } else {
             res({error_code:1,err_desc:`No result for the query ${JSON.stringify(query)}`});
         }

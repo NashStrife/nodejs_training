@@ -1,16 +1,9 @@
+{{log model.id}}
 <section class="view-details">
-    <nav>
-        <ul>
-            <!--<li><a href="/details/0"> Previous </a></li>
-            <li><a href="/details/2"> Next </a></li>-->
-            <!--Create a ember link to the form page-->
-            {{#link-to 'form' class="button"}}Add a restaurant{{/link-to}}
-        </ul>
-    </nav>
     <article>
         <h2>Resto<span>8/10</span></h2>
         <div>
-            <img src="img/resto.jpg" alt="resto" width="400" height="250">
+            <img src="static/assets/images/resto.jpg" alt="resto" width="400" height="250">
         </div>
         <div>
             <ul>
@@ -34,7 +27,7 @@
     </article>
     <nav>
         <ul>
-            <li><a href="/"> Retour </a></li>
+            <li>{{#link-to 'list'}} Retour{{/link-to}} </li>
         </ul>
     </nav>
 </section>

@@ -1,28 +1,13 @@
 <section class="list-view">
-    <nav>
+    {{!--call the list-filter component which add a filter input and manage values in the list--}}
+    {{#list-filter
+        filter=(action 'filterByName')
+        as |restos|}}
         <ul>
-            <li>
-                {{#link-to 'form' class="button"}}
-                    Add a restaurant
-                {{/link-to}}
-            </li>
+            {{!--same than ng-repeat--}}
+            {{#each restos as |restoUnit|}}
+                <li>{{resto-listing resto=restoUnit}}</li>
+            {{/each}}
         </ul>
-    </nav>
-    <article>
-        <h2>Resto 01</h2>
-        {{#link-to 'details' class="button"}}
-            Show details
-        {{/link-to}}
-        <img src="image01.jpg" alt="resto 01" width="400" height="250">
-        <ul>
-            <li><span>Note : 8/10</span></li>
-            <li><strong>Address :</strong> My Town</li>
-            <li><strong>Cooks type :</strong>
-                <ul>
-                    <li>Cook Type 01</li>
-                    <li>Cook Type 02</li>
-                </ul>
-            </li>
-        </ul>
-    </article>
+    {{/list-filter}}
 </section>

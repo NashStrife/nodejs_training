@@ -13,6 +13,13 @@ test('should redirect to list restos route', function(assert){
     });
 });
 
+test('should list restaurants', function(assert){
+    visit('/');
+    andThen(function() {
+        assert.equal(find('.listing').length, 3, 'should see 3 listings');
+    });
+});
+
 test('should filter the list of restos by name', function(assert){
     visit('/');
     // we have a input field with the class .list-filter and we fill it in with 'jade de chine'
@@ -28,7 +35,7 @@ test('should filter the list of restos by name', function(assert){
 
 test('should link to details about a specific resto', function(assert){
     visit('/');
-    click('a:contains("Details")');
+    click('a:contains("Show details")');
     andThen(function() {
         assert.equal(currentURL(), '/details', 'should navigate to details page');
     });

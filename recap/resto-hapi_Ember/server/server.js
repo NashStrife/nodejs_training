@@ -8,7 +8,11 @@ let db = require(`${process.cwd()}/utils/db`);
 let server = new Hapi.Server();
 server.connection({
     host: 'localhost',
-    port: config.port
+    port: config.port,
+    routes: {
+        // allow direct access from ember to the port 3000
+        cors: true
+    }
 });
 
 db.config();

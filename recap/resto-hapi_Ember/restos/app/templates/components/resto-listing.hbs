@@ -1,0 +1,22 @@
+{{log resto.id}}
+<article class="listing">
+    <h2>{{resto.name}} - {{#link-to 'details' resto.id}}Show details{{/link-to}}</h2>
+    {{!--test if isWide is set to true we add the class "wide" to the link--}}
+    {{!--action will call the function toggleImageSize when we click on the link--}}
+    <a {{action 'toggleImageSize'}} class="resto-image {{if isWide "wide"}}">
+        <img src="static/assets/images/{{resto.pictures.[0].link}}" alt="{{resto.pictures.[0].title}}">
+        <small>View Larger</small>
+    </a>
+    <ul>
+        {{!--call the helper "resto-rating" to get the class depending of the rating--}}
+        <li>Note : <span class="{{resto-rating resto.rating}}">{{resto.rating}}</span>/10</li>
+        <li><strong>Address :</strong> {{resto.address.town}}</li>
+        <li><strong>Cooks type :</strong>
+            <ul>
+                {{#each resto.cooktype as |cookType|}}
+                <li>{{cookType}}</li>
+                {{/each}}
+            </ul>
+        </li>
+    </ul>
+</article>

@@ -4,7 +4,7 @@ let path = require('path');
 
 let config = {
     logging : true,
-    seed : false,
+    seed : true,
     rootPath: path.normalize(__dirname + '/..'),
     //if PORT env if defined we use it otherwise we use 3000 port
     port: parseInt(process.env.PORT, 10) || 3000,

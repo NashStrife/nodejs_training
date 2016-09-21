@@ -80,7 +80,7 @@ let restoModel = function() {
             }
         },
         phone : String,
-        cookType : Array,
+        cooktype : Array,
         rating : {
             type : Number,
             validate : quoteValidator
@@ -92,13 +92,13 @@ let restoModel = function() {
             type : String,
             validate : urlValidator
         },
-        createdAt : {
+        createdat : {
             type : Date,
             required : true,
             validate : dateValidator
         },
         // updateAt will be auto updated when we modify data with the current date
-        updatedAt : { type : Date, default : Date.now}
+        updatedat : { type : Date, default : Date.now}
     });
 
     // we use a hook to say "when you want to save data using the model do this before"

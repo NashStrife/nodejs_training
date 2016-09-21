@@ -8,7 +8,8 @@ const Router = Ember.Router.extend({
 
 // route created with the command "ember g route myRoute"
 Router.map(function() {
-  this.route('details');
+  // dynamic route with argument
+  this.route('details', {path: '/details/:detail_id'});
   this.route('form');
   this.route('list');
 });

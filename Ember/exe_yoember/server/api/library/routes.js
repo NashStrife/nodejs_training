@@ -18,9 +18,13 @@ module.exports = [
         path: '/api/libraries',
         handler: controllers.postLibrary
     },{
-        method: 'PUT',
+        method: 'PATCH',
         path: '/api/libraries/{id}',
         handler: controllers.updateLibrary
+    },{
+        method: 'DELETE',
+        path: '/api/libraries/{id}',
+        handler: controllers.removeLibrary
     },{
         method: 'GET',
         path: '/api/invitations',

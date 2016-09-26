@@ -32,31 +32,17 @@ exports.postLibrary = function(req, res){
 
     library.save(function(err, data) {
         if(err) {
-            res({ 
-                data: {
-                    type: "library",
-                    id: 0,
-                    attributes: {
-                        error: 1,
-                        message: err.message
-                    }
-                }
-            });
+            res(utils.resError('library', err));
             logger.warn(err.message);
             return;
         }
+        let attributes = {
+            error: 0,
+            message: 'Document saved'
+        };
         logger.log(data);
-        res({
-            data: {
-                type: "library",
-                id: data._id,
-                attributes: {
-                    error: 0,
-                    message: 'Document saved'
-                }
-            }
-        });
-        // res(utils.formatJson('library', data));
+        // use a custom function from the utils file to avoid redundancy
+        res(utils.formatJson('library', data._id, attributes));
     });
 };
 
@@ -66,27 +52,12 @@ exports.getLibrary = function(req, res) {
     model.findById(req.params.id, 
         function(err, libraryFromDb){
             if(err){
-                res({ 
-                    data: {
-                        type: "library",
-                        id: 0,
-                        attributes: {
-                            error: 1,
-                            message: err.message
-                        }
-                    }
-                });
+                res(utils.resError('library', err));
                 logger.warn(err.message);
                 return;
             }
             logger.log(libraryFromDb);
-            res({
-                data: {
-                    type: "library",
-                    id: libraryFromDb._id,
-                    attributes: libraryFromDb
-                }
-            });
+            res(utils.formatJson('library', libraryFromDb._id, libraryFromDb));
         }
     );
 };
@@ -101,30 +72,36 @@ exports.updateLibrary = function(req, res) {
     model.findByIdAndUpdate(req.params.id, request,
         function(err, data) {
             if(err) {
-                res({ 
-                    data: {
-                        type: "library",
-                        id: 0,
-                        attributes: {
-                            error: 1,
-                            message: err.message
-                        }
-                    }
-                });
+                res(utils.resError('library', err));
                 logger.warn(err.message);
                 return;
             }
+            let attributes = {
+                error: 0,
+                message: 'Document updated'
+            };
             logger.log(data);
-            res({
-                data: {
-                    type: "library",
-                    id: data._id,
-                    attributes: {
-                        error: 0,
-                        message: 'Document updated'
-                    }
-                }
-            });
+            res(utils.formatJson('library', data._id, attributes));
+        }
+    );
+};
+
+exports.removeLibrary = function(req, res) {
+    logger.log("DELETE Library Controller");
+
+    model.findByIdAndRemove(req.params.id, 
+        function(err, data) {
+            if(err) {
+                res(utils.resError('library', err));
+                logger.warn(err.message);
+                return;
+            }
+            let attributes = {
+                error: 0,
+                message: 'Document deleted'
+            };
+            logger.log(data);
+            res(utils.formatJson('library', data._id, attributes));
         }
     );
 };

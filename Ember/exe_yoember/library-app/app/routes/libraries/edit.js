@@ -4,13 +4,14 @@ export default Ember.Route.extend({
     // connect to the model with the id passed in the url by the "params" var
     model(params) {
         // download the record in function of the id
-        // get(/api/libraries/:id)
+        // get request to /api/libraries/{id}
         return this.store.findRecord('library', params.library_id);
     },
     actions : {
         // get the updated model thx to newLibrary
         saveLibrary(editedLibrary) {
             // save the new updated model
+            // patch request to /api/libraries/{id}
             editedLibrary.save().then(() => this.transitionTo('libraries'));
         },
         // when switching page

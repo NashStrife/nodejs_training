@@ -1,3 +1,4 @@
+"use strict";
 let Library = require('../api/library/model');
 let logger = require(`./logger`);
 let _ = require('lodash');
@@ -21,28 +22,37 @@ let libraries = [
 let invitations = [
     {
         "email": "monmail@gmail.com"
-    },
-    {
+    },{
         "email": "toto@gmail.com"
-    },
-    {
+    },{
         "email": "tata@gmail.com"
     }
 ];
 
-var cleanDB = function() {
-    logger.log('--- SEED : Cleaning the DB');
-    var cleanPromises = [Library]
+let contacts = [
+    {
+        "email": "monmail@gmail.com",
+        "message": "Hello !"
+    },{
+        "email": "toto@gmail.com",
+        "message": "Nice app !"
+    }
+];
+
+let cleanDB = function() {
+    logger.log('SEED : Cleaning the DB');
+    let cleanPromises = [Library]
         .map(function(model) {
-            var remove = model.remove().exec();
+            let remove = model.remove().exec();
             remove.invitations = model.Invitation.remove().exec();
+            remove.contacts = model.Contact.remove().exec();
             return remove;
         });
     return Promise.all(cleanPromises);
 };
 
-var createDoc = function(model, doc) {
-    logger.log("--- SEED : Creating Doc");
+let createDoc = function(model, doc) {
+    logger.log("SEED : Creating Doc");
     return new Promise(function(resolve, reject) {
         new model(doc).save(function(err, saved) {
             return err ? reject(err) : resolve(saved);
@@ -50,9 +60,9 @@ var createDoc = function(model, doc) {
     });
 };
 
-var createLibraries = function(data) {
-    logger.log("--- SEED : Creating Library");
-    var promises = libraries.map(function(library) {
+let createLibraries = function(data) {
+    logger.log("SEED : Creating Library");
+    let promises = libraries.map(function(library) {
         return createDoc(Library, library);
     });
 
@@ -64,9 +74,9 @@ var createLibraries = function(data) {
         });
 };
 
-var createInvitations = function(data) {
-    logger.log("--- SEED : Creating Invitation");
-    var promises = invitations.map(function(invitation) {
+let createInvitations = function(data) {
+    logger.log("SEED : Creating Invitation");
+    let promises = invitations.map(function(invitation) {
         return createDoc(Library.Invitation, invitation);
     });
 
@@ -78,8 +88,24 @@ var createInvitations = function(data) {
         });
 };
 
+let createContacts = function(data) {
+    logger.log("SEED : Creating Contacts");
+    let promises = contacts.map(function(contact) {
+        return createDoc(Library.Contact, contact);
+    });
+
+    return Promise.all(promises)
+        .then(function(contacts) {
+            return _.merge({
+                contacts: contacts
+            }, data || {});
+        });
+};
+
 cleanDB()
     .then(createLibraries)
     .then(logger.log.bind(logger))
     .then(createInvitations)
+    .then(logger.log.bind(logger))
+    .then(createContacts)
     .then(logger.log.bind(logger));

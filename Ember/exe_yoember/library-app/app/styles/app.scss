@@ -3,3 +3,91 @@
 body {
     padding-top: 20px;
 }
+
+h3 {
+    font-size: 18px;
+}
+
+.lib-nav ul {
+    padding: 0;
+    list-style: none;
+}
+
+.lib-nav li {
+    display: inline-block;
+}
+
+.lib-nav a {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.lib-nav a:hover {
+    background-color: #EEE;
+    text-decoration: none;
+}
+
+.lib-nav .active, .lib-nav .active:hover{
+    background-color: #377;
+    color: #FFF;
+    text-decoration: none;
+}
+
+.list {
+    display: inline-block;
+    min-width: 300px;
+    min-height: 100px;
+    vertical-align: top;
+    margin: 10px;
+    border: 1px solid #BBB;
+    border-radius: 3px;
+}
+
+.list header, .list footer {
+    background-color: #EEE;
+    padding-left: 10px;
+    line-height: 35px;
+}
+
+.list h3 {
+    line-height: 35px;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.list ul {
+    padding: 10px;
+    list-style: none;
+}
+
+.list button {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 5px;
+    border: 0;
+    border-radius: 3px;
+    color: #FFF;
+}
+
+.list .edit {
+    background-color: #BBB;
+}
+
+.list .delete {
+    background-color: #d9534f;
+}
+
+.lib-form label {
+    display: block;
+    width: 100px;
+}
+
+.lib-form input {
+    padding: 5px;
+}
+
+.lib-form input[type=text] {
+    display: block;
+    width: 100%;
+}

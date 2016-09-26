@@ -26,6 +26,30 @@ let libraryModel = function() {
         }
     });
 
+    let Contact = mongoose.Schema({
+        email: {
+            type: String,
+            lowercase: true
+        },
+        message: {
+            type: String,
+            lowercase: true
+        }
+    });
+
+    Library.pre('save', function(next) {
+        let self = this;
+        this.constructor.find({
+            'address': self.address
+        }, function(err, docs) {
+            if(!docs.length) {
+                next();
+            } else {
+                next(new Error("Library exists !"));
+            }
+        });
+    });
+
     Invitation.pre('save', function(next) {
         let self = this;
         this.constructor.find({
@@ -39,11 +63,25 @@ let libraryModel = function() {
         });
     });
 
+    Contact.pre('save', function(next) {
+        let self = this;
+        this.constructor.find({
+            'message': self.message
+        }, function(err, docs) {
+            if(!docs.length) {
+                next();
+            } else {
+                next(new Error("Message exists !"));
+            }
+        });
+    });
+
     // return mongoose.model('invitation', Invitation, 'invitations');
 
     let Base = mongoose.model('library', Library, 'libraries');
     let exports = module.exports = Base;
     Base.Invitation = mongoose.model('invitation', Invitation, 'invitations');
+    Base.Contact = mongoose.model('contact', Contact, 'contacts');
 
     return Base;
 };

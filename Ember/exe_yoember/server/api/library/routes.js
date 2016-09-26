@@ -7,22 +7,35 @@ let logger = require(`${process.cwd()}/utils/logger`);
 module.exports = [
     {
         method: 'GET',
-        path: '/api/invitations',
-        handler: controllers.getAllInvitations
-    },
-    {
-        method: 'POST',
-        path: '/api/invitations',
-        handler: controllers.postInvitation
-    },
-    {
-        method: 'GET',
         path: '/api/libraries',
+        handler: controllers.getAllLibraries
+    },{
+        method: 'GET',
+        path: '/api/libraries/{id}',
         handler: controllers.getLibrary
-    },
-    {
+    },{
         method: 'POST',
         path: '/api/libraries',
         handler: controllers.postLibrary
+    },{
+        method: 'PUT',
+        path: '/api/libraries/{id}',
+        handler: controllers.updateLibrary
+    },{
+        method: 'GET',
+        path: '/api/invitations',
+        handler: controllers.getAllInvitations
+    },{
+        method: 'POST',
+        path: '/api/invitations',
+        handler: controllers.postInvitation
+    },{
+        method: 'GET',
+        path: '/api/contacts',
+        handler: controllers.getAllContacts
+    },{
+        method: 'POST',
+        path: '/api/contacts',
+        handler: controllers.postContact
     }
 ];

@@ -1,4 +1,4 @@
-<h2>Add a new local Library</h2>
+<h2>Edit Library</h2>
 
 <form {{action 'saveLibrary' model on="submit"}} class="lib-form">
     <p>
@@ -14,6 +14,6 @@
         {{input type="text" id="phone" value=model.phone placeholder="The phone number of the Library"}}
     </p>
     <p>
-        {{input type="submit" value="Add" disabled=isDisabled}}
+        {{input type="submit" value="Edit" disabled=isDisabled}}
     </p>
 </form>

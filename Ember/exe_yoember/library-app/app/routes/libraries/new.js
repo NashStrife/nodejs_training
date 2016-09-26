@@ -1,9 +1,20 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    // create a new record that will be the model whiwh is auto linked with the template
+    // create a new record that will be the model
     model() {
+        // GET request to /api/libraries
         return this.store.createRecord('library');
+    },
+    // define some values to use in the view/template and define the model
+    setupController: function(controller, model) {
+        this._super(controller, model);
+        controller.set('title', 'Create a new library');
+        controller.set('buttonLabel', 'Create');
+    },
+    // render a different template than /libraries/news to have a common "form" template with differents values
+    renderTemplate(){
+        this.render('libraries/form');
     },
     actions: {
         // get the parameter which contain data to store

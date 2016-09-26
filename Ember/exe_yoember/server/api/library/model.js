@@ -10,8 +10,7 @@ let libraryModel = function() {
             lowercase: true
         },
         address: {
-            type: String,
-            lowercase: true
+            type: String
         },
         phone: {
             type: String,
@@ -32,8 +31,7 @@ let libraryModel = function() {
             lowercase: true
         },
         message: {
-            type: String,
-            lowercase: true
+            type: String
         }
     });
 

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model() {
+        // GET request to /api/contacts
         return this.store.createRecord('contact');
     },
 

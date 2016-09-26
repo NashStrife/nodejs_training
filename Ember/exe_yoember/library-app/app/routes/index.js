@@ -2,14 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model(){
+        // GET request to /api/invitations
         return this.store.createRecord('invitation');
     },
     // define a controller with informations used in the view
     setupController: function(controller, model) {
-        // define the model to use in the controller
-        controller.set('model', model);
-        this.controller.set('headerMessage', 'Coming Soon');
-        this.controller.set('responseMessage', '');
+        // preserve the default behavior of the route deleted by the setupController implement
+        this._super(controller, model);
+
+        // define some var to use inside the view
+        controller.set('headerMessage', 'Coming Soon');
+        controller.set('responseMessage', '');
     },
     actions: {
         saveInvitation(newInvitation) {

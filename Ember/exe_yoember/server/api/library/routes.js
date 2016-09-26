@@ -18,7 +18,7 @@ module.exports = [
         path: '/api/libraries',
         handler: controllers.postLibrary
     },{
-        method: 'PATCH',
+        method: 'PATCH', // Ember use PATCH in place of PUT
         path: '/api/libraries/{id}',
         handler: controllers.updateLibrary
     },{

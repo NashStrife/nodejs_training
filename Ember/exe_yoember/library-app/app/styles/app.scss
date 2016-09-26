@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+$green: #377;
+$red: #d9534f;
+$lightGrey: #EEE;
+$mediumGrey: #BBB;
+
 body {
     padding-top: 20px;
 }
@@ -24,30 +29,31 @@ h3 {
 }
 
 .lib-nav a:hover {
-    background-color: #EEE;
+    background-color: $lightGrey;
     text-decoration: none;
 }
 
 .lib-nav .active, .lib-nav .active:hover{
-    background-color: #377;
+    background-color: $green;
     color: #FFF;
     text-decoration: none;
 }
 
 .list {
     display: inline-block;
-    min-width: 300px;
+    width: 100%;
     min-height: 100px;
     vertical-align: top;
-    margin: 10px;
-    border: 1px solid #BBB;
+    margin-bottom: 10px;
+    border: 1px solid $mediumGrey;
     border-radius: 3px;
 }
 
 .list header, .list footer {
-    background-color: #EEE;
+    background-color: $lightGrey;
     padding-left: 10px;
     line-height: 35px;
+    height: 35px;
 }
 
 .list h3 {
@@ -71,11 +77,11 @@ h3 {
 }
 
 .list .edit {
-    background-color: #BBB;
+    background-color: $mediumGrey;
 }
 
 .list .delete {
-    background-color: #d9534f;
+    background-color: $red;
 }
 
 .lib-form label {
@@ -90,4 +96,16 @@ h3 {
 .lib-form input[type=text] {
     display: block;
     width: 100%;
+}
+
+input[type=submit] {
+    background-color: $green;
+    color: #FFF;
+    border: 1px solid $mediumGrey;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+input:disabled {
+    background-color: $mediumGrey;
 }

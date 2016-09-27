@@ -1,10 +1,11 @@
 'use strict';
 
 let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 // let validate = require('mongoose-validator');
 
 let libraryModel = function() {
-    let Library = mongoose.Schema({
+    let Library = Schema({
         name: {
             type: String,
             lowercase: true
@@ -15,17 +16,50 @@ let libraryModel = function() {
         phone: {
             type: String,
             lowercase: true
+        },
+        books: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'book' 
+        }]
+    });
+
+    let Book = Schema({
+        title: {
+            type: String,
+            lowercase: true
+        },
+        releaseYear: {
+            type: Date
+        },
+        library: {
+            type: Schema.Types.ObjectId, 
+            ref: 'library' 
+        },
+        author: {
+            type: Schema.Types.ObjectId, 
+            ref: 'author' 
         }
     });
 
-    let Invitation = mongoose.Schema({
+    let Author = Schema({
+        name: {
+            type: String,
+            lowercase: true
+        },
+        books: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'book' 
+        }]
+    });
+
+    let Invitation = Schema({
         email: {
             type: String,
             lowercase: true
         }
     });
 
-    let Contact = mongoose.Schema({
+    let Contact = Schema({
         email: {
             type: String,
             lowercase: true
@@ -78,6 +112,8 @@ let libraryModel = function() {
 
     let Base = mongoose.model('library', Library, 'libraries');
     let exports = module.exports = Base;
+    Base.Book = mongoose.model('book', Book, 'books');
+    Base.Author = mongoose.model('author', Author, 'authors');
     Base.Invitation = mongoose.model('invitation', Invitation, 'invitations');
     Base.Contact = mongoose.model('contact', Contact, 'contacts');
 

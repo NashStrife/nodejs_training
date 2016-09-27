@@ -2,14 +2,14 @@
 {{#if responseMessage}}
     <div class="alert alert-success">Thank you for your message, we'll get in touch soon</div>
 {{else}}
-<form {{action 'saveMessage' model on="submit"}}>
+<form {{action 'saveMessage' model on="submit"}} class="lib-form">
     <p>
-        <label for="email">Email: </label><br>
+        <label for="email">Email: </label>
         {{input type="email" value=model.email id="email" placeholder="Please type your e-mail address." autofocus="autofocus"}}
         {{#if model.isEmailValid}}<span>v</span>{{/if}}
     </p>
     <p>
-        <label for="message">Your Message: </label><br>
+        <label for="message">Your Message: </label>
         {{textarea id="message" value=model.message placeholder="At least 5 characters" rows="7"}}
         {{#if model.isMsgValid}}<span>v</span>{{/if}}
     </p>

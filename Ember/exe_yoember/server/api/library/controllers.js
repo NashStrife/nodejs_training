@@ -4,16 +4,17 @@ let logger = require(`${process.cwd()}/utils/logger`);
 let utils = require(`${process.cwd()}/utils/utils`)
 let model = require('./model');
 
+
 exports.getAllLibraries = function(req, res){
     logger.log("GET All Library Controller");
     model.find()
     .then(function(docs){
         logger.log(docs);
         let libraries = [];
-
+        // manip to edit the JSON format to fit with the format needed by Ember
         docs.map(function(libraryFromDb){
             let library = {
-                type: "library",
+                type: 'library',
                 id: libraryFromDb._id,
                 attributes: libraryFromDb
             };
@@ -110,12 +111,11 @@ exports.getAllInvitations = function(req, res) {
     logger.log('GET All Invitations Controller');
     model.Invitation.find()
     .then(function(docs){
-        console.log(docs);
+        logger.log(docs);
         let invitations = [];
-        // manip to edit the JSON format to fit with the format needed by Ember
         docs.map(function(invitFromDb){
             let invitation = {
-                type: "invitations",
+                type: "invitation",
                 id: invitFromDb._id,
                 attributes: invitFromDb
             };
@@ -138,7 +138,7 @@ exports.postInvitation = function(req, res){
         if(err) {
             res({ 
                 data: {
-                    type: "invitations",
+                    type: "invitation",
                     id: 0,
                     attributes: {
                         error: 1,

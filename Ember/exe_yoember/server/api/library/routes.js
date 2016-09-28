@@ -1,8 +1,13 @@
 'use strict';
 
 let server = require(`${process.cwd()}/server`);
-let controllers = require(`./controllers`);
 let logger = require(`${process.cwd()}/utils/logger`);
+
+let controllers = require(`./controllers`);
+let invitationControllers = require('./invitationControllers');
+let contactControllers = require('./contactControllers');
+let bookControlles = require('./bookControllers');
+let authorControllers = require('./authorControllers');
 
 module.exports = [
     // LIBRARIES
@@ -28,67 +33,67 @@ module.exports = [
         handler: controllers.removeLibrary
     },
     // BOOKS
-    // {
-    //     method: 'GET',
-    //     path: '/api/books',
-    //     handler: controllers.getAllBooks
-    // },{
-    //     method: 'GET',
-    //     path: '/api/books/{id}',
-    //     handler: controllers.getBook
-    // },{
-    //     method: 'POST',
-    //     path: '/api/books',
-    //     handler: controllers.postBook
-    // },{
-    //     method: 'PATCH', 
-    //     path: '/api/books/{id}',
-    //     handler: controllers.updateBook
-    // },{
-    //     method: 'DELETE',
-    //     path: '/api/books/{id}',
-    //     handler: controllers.removeBook
-    // },
+    {
+        method: 'GET',
+        path: '/api/books',
+        handler: bookControlles.getAllBooks
+    },{
+        method: 'GET',
+        path: '/api/books/{id}',
+        handler: bookControlles.getBook
+    },{
+        method: 'POST',
+        path: '/api/books',
+        handler: bookControlles.postBook
+    },{
+        method: 'PATCH', 
+        path: '/api/books/{id}',
+        handler: bookControlles.updateBook
+    },{
+        method: 'DELETE',
+        path: '/api/books/{id}',
+        handler: bookControlles.removeBook
+    },
     // AUTHORS
-    // {
-    //     method: 'GET',
-    //     path: '/api/authors',
-    //     handler: controllers.getAllAuthors
-    // },{
-    //     method: 'GET',
-    //     path: '/api/authors/{id}',
-    //     handler: controllers.getAuthor
-    // },{
-    //     method: 'POST',
-    //     path: '/api/authors',
-    //     handler: controllers.postAuthor
-    // },{
-    //     method: 'PATCH',
-    //     path: '/api/authors/{id}',
-    //     handler: controllers.updateAuthor
-    // },{
-    //     method: 'DELETE',
-    //     path: '/api/authors/{id}',
-    //     handler: controllers.removeAuthor
-    // },
+    {
+        method: 'GET',
+        path: '/api/authors',
+        handler: authorControllers.getAllAuthors
+    },{
+        method: 'GET',
+        path: '/api/authors/{id}',
+        handler: authorControllers.getAuthor
+    },{
+        method: 'POST',
+        path: '/api/authors',
+        handler: authorControllers.postAuthor
+    },{
+        method: 'PATCH',
+        path: '/api/authors/{id}',
+        handler: authorControllers.updateAuthor
+    },{
+        method: 'DELETE',
+        path: '/api/authors/{id}',
+        handler: authorControllers.removeAuthor
+    },
     // INVITATIONS
     {
         method: 'GET',
         path: '/api/invitations',
-        handler: controllers.getAllInvitations
+        handler: invitationControllers.getAllInvitations
     },{
         method: 'POST',
         path: '/api/invitations',
-        handler: controllers.postInvitation
+        handler: invitationControllers.postInvitation
     },
     // CONTACTS
     {
         method: 'GET',
         path: '/api/contacts',
-        handler: controllers.getAllContacts
+        handler: contactControllers.getAllContacts
     },{
         method: 'POST',
         path: '/api/contacts',
-        handler: controllers.postContact
+        handler: contactControllers.postContact
     }
 ];

@@ -3,38 +3,37 @@
 let logger = require(`${process.cwd()}/utils/logger`);
 let utils = require(`${process.cwd()}/utils/utils`)
 let model = require('./model');
-// to create custom error messages compatible with hapi-json-api module
+
 let Boom = require('boom');
 
-let type = 'library';
+let type = 'author';
 
-exports.getAllLibraries = function(request, reply){
-    logger.log("GET All Libraries Controller");
-    model.find()
+exports.getAllAuthors = function(req, res){
+    logger.log("GET All Authors Controller");
+    model.Author.find()
     .then(function(docs){
         logger.log(docs);
-        let libraries = [];
-        // manip to edit data to be in json api format
-        docs.map(function(libraryFromDb){
-            let library = {
+        let dataFormatted = [];
+        docs.map(function(docFromDb){
+            let doc = {
                 type: type,
-                id: libraryFromDb._id,
-                attributes: libraryFromDb
+                id: docFromDb._id,
+                attributes: docFromDb
             };
-            libraries.push(library);
+            books.push(doc);
         });
-        reply({data: libraries});
+        res({data: dataFormatted});
     });
 };
 
-exports.postLibrary = function(req, res){
-    logger.log("POST Library Controller");
+exports.postAuthor = function(req, res){
+    logger.log("POST Author Controller");
     let request = {};
     if(req.payload.data)
         request = req.payload.data.attributes;
-    let library = new model(request);
+    let author = new model.Author(request);
 
-    library.save(function(err, data) {
+    author.save(function(err, data) {
         if(err) {
             logger.warn(err.message);
             res(Boom.badRequest(err.message));
@@ -49,31 +48,31 @@ exports.postLibrary = function(req, res){
     });
 };
 
-exports.getLibrary = function(req, res) {
-    logger.log("GET Library by ID");
+exports.getAuthor = function(req, res) {
+    logger.log("GET Author by ID");
 
-    model.findById(req.params.id, 
-        function(err, libraryFromDb){
+    model.Author.findById(req.params.id, 
+        function(err, docFromDb){
             if(err){
                 logger.warn(err.message);
                 res(Boom.badRequest(err.message));
                 return;
             }
-            logger.log(libraryFromDb);
-            res(utils.formatJson(type, libraryFromDb._id, libraryFromDb));
+            logger.log(docFromDb);
+            res(utils.formatJson(type, docFromDb._id, docFromDb));
         }
     );
 };
 
-exports.updateLibrary = function(req, res) {
-    logger.log("PUT Library Controller");
+exports.updateAuthor = function(req, res) {
+    logger.log("PUT Author Controller");
     let request = {};
     if(req.payload.data)
         request = req.payload.data.attributes;
 
     logger.log(request);
-    model.findByIdAndUpdate(req.params.id, request,
-        function(err, data) {
+    model.Author.findByIdAndUpdate(req.params.id, request,
+        function(err, docFromDb) {
             if(err) {
                 logger.warn(err.message);
                 res(Boom.badRequest(err.message));
@@ -82,16 +81,16 @@ exports.updateLibrary = function(req, res) {
             let attributes = {
                 message: 'Document updated'
             };
-            logger.log(data);
-            res(utils.formatJson(type, data._id, attributes));
+            logger.log(docFromDb);
+            res(utils.formatJson(type, docFromDb._id, attributes));
         }
     );
 };
 
-exports.removeLibrary = function(req, res) {
-    logger.log("DELETE Library Controller");
+exports.removeAuthor = function(req, res) {
+    logger.log("DELETE Author Controller");
 
-    model.findByIdAndRemove(req.params.id, 
+    model.Author.findByIdAndRemove(req.params.id, 
         function(err, data) {
             if(err) {
                 logger.warn(err.message);

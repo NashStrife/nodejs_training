@@ -111,3 +111,15 @@ input[type=submit] {
 input:disabled {
     background-color: $mediumGrey;
 }
+
+// define style for the fade anim of the seed message
+.label-fade {
+    margin: 10px;
+    // invisible first
+    opacity: 0;
+    @include transition(all 0.5s);
+    &.label-show {
+        // then become visible when we click
+        opacity: 1;
+    }
+}

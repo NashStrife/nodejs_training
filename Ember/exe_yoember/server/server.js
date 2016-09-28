@@ -20,7 +20,17 @@ if(config.seed){
     require(`${process.cwd()}/utils/seed`);
 }
 
-server.route(require(`${process.cwd()}/api/library/routes`));
+server.register({
+    // module to rewrite Boom errors from routes to be json api compliant
+    register: require('@gar/hapi-json-api'),
+    options: {}
+}, (err) => {
+    if(err) {
+        logger.warn(err);
+    }
+    server.route(require(`${process.cwd()}/api/library/routes`));
+});
+
 
 server.start(function() {
     logger.log(`Server running at: ${server.info.uri}`);

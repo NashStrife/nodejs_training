@@ -14,7 +14,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/libraries',
-        handler: controllers.getAllLibraries
+        handler: controllers.getLibraries
     },{
         method: 'GET',
         path: '/api/libraries/{id}',

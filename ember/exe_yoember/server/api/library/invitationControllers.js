@@ -12,8 +12,9 @@ exports.getAllInvitations = function(req, res) {
     logger.log('GET All Invitations Controller');
     model.Invitation.find()
     .then(function(docs){
-        logger.log(docs);
+        // logger.log(docs);
         let invitations = [];
+
         docs.map(function(invitFromDb){
             let invitation = {
                 type: type,
@@ -22,6 +23,7 @@ exports.getAllInvitations = function(req, res) {
             };
             invitations.push(invitation);
         });
+        logger.log({data: invitations});
         res({data: invitations});
     });
 };

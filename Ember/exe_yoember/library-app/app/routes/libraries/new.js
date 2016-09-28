@@ -23,11 +23,14 @@ export default Ember.Route.extend({
             newLibrary.save()
                 .then((response) => {
                     console.log(response);
-                    console.log('New library Saved !');
-                    // redirect to libraries home page
-                    this.transitionTo('libraries');
+                    // console.log('New library Saved !');
+                    // redirect to libraries home page and define a message to show to the user
+                    this.transitionTo('libraries', {queryParams: {responseMessage: 'New library Saved !'}});
                 }, (response) => {
-                    console.log(response);
+                    // console.log(response.errors[0].status);
+                    if(response.errors[0].status === 400){
+                        this.controller.set('errorMessage', 'There is already a library at this address.');
+                    }
                 });
         },
         // built-in action that is called when we leave the page

@@ -8,22 +8,32 @@ let Boom = require('boom');
 
 let type = 'library';
 
-exports.getAllLibraries = function(request, reply){
-    logger.log("GET All Libraries Controller");
-    model.find()
+exports.getLibraries = function(req, res){
+    logger.log("GET Libraries Controller");
+    // if we pass a query like "/api/libraries?name=my name" it will be filtered thx to req.query
+    // if not, it will list all the collection cause req.query will be null
+    logger.log(req.query);
+    model.find(req.query)
     .then(function(docs){
         logger.log(docs);
-        let libraries = [];
-        // manip to edit data to be in json api format
-        docs.map(function(libraryFromDb){
-            let library = {
-                type: type,
-                id: libraryFromDb._id,
-                attributes: libraryFromDb
-            };
-            libraries.push(library);
-        });
-        reply({data: libraries});
+        // the result is not empty we have a corresponding result
+        if(docs.length) {
+            let libraries = [];
+            // manip to edit data to be in json api format
+            docs.map(function(libraryFromDb){
+                let library = {
+                    type: type,
+                    id: libraryFromDb._id,
+                    attributes: libraryFromDb
+                };
+                libraries.push(library);
+            });
+            res({data: libraries});
+        } else {
+            logger.warn('No result for the query');
+            res(Boom.badRequest('No result for the query'));
+        }
+        
     });
 };
 

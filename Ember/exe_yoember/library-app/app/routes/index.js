@@ -17,14 +17,17 @@ export default Ember.Route.extend({
     actions: {
         saveInvitation(newInvitation) {
             console.log('Saving new invitation...');
-            newInvitation.save().then(() => {
-                console.log(newInvitation);
-                console.log('New Invitation Saved !');
-                // set up a responseMessage property
-                this.controller.set('responseMessage', `Thank you! We've just saved your email address: ${newInvitation.get('email')}`);
-                // clean the email value
-                newInvitation.set('email', '');
-            });
+            newInvitation.save()
+                .then((response) => {
+                    // console.log(newInvitation);
+                    console.log('New Invitation Saved !');
+                    // set up a responseMessage property
+                    this.controller.set('responseMessage', `Thank you! We've just saved your email address: ${newInvitation.get('email')}`);
+                }, (response)=>{
+                    if(response.errors[0].status === 400){
+                        this.controller.set('errorMessage', 'Your email is already registered');
+                    }
+                });
         }
     }
 });

@@ -9,6 +9,7 @@
   </thead>
   <tbody>
   {{#each model as |invitation|}}
+  {{log invitation.email}}
     <tr>
       <th>{{invitation.id}}</th>
       <td>{{invitation.email}}</td>

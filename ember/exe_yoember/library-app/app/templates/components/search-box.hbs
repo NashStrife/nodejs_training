@@ -1,5 +1,5 @@
 {{input type="text" value=value placeholder="Search in the Application"}}
-{{#link-to 'list' (query-params search=value) class="btn btn-default"}}Search All{{/link-to}}
+{{#link-to 'list' (query-params search=value) disabled=isDisabled class="btn btn-default"}}Search{{/link-to}}
 
 {{!--buttons to filter the libraries list inside the libraries route--}}
 {{!--<button class="btn btn-default" {{action 'filterByName' value}}>Search</button>

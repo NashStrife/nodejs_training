@@ -4,6 +4,10 @@ export default Ember.Component.extend({
     tagName: 'span',
     classNames: ['search-bar'],
 
+    // isValid: Ember.computed.gte('value.length', 3),
+    // isDisabled: Ember.computed.not('isValid'),
+    isDisabled: Ember.computed.empty('value'),
+
     actions: {
         // filterByName(value){
         //     if(value){

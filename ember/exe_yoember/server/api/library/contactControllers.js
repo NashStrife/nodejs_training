@@ -9,8 +9,20 @@ let Boom = require('boom');
 let type = 'contact';
 
 exports.getAllContacts = function(req, res) {
-    logger.log('GET All Contacts Controller');
-    model.Contact.find()
+    logger.log('GET Contacts Controller');
+
+    let query = {};
+
+    if(req.query.search){
+        logger.log(req.query.search);
+        let regex = { "$regex": req.query.search, "$options": "i" };
+        query = { $or: [
+            {'email': regex},
+            {'message': regex}
+        ]};
+    }
+
+    model.Contact.find(query)
     .then(function(docs){
         logger.log(docs);
         let contacts = [];

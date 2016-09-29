@@ -13,11 +13,13 @@ export default Ember.Route.extend({
         // get data from other views to manage response Message
         this.set('responseMessage', transition.queryParams.responseMessage);
     },
-    // just get all library records from the server
+    
     model(params){
+        // if the user enter a search
         if(params.search) {
-            return this.store.query('library', {name: params.search});
+            return this.store.query('library', {search: params.search});
         }
+        // just get all library records from the server
         return this.store.findAll('library');
     },
 
@@ -30,15 +32,21 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        filterByName(value){
-            if(value){
-                console.log(value);
-                this.transitionTo('libraries', {queryParams: {search: value}});
-            } else {
-                this.transitionTo('libraries');
-            }
+        // function to filter the libraries list insite the route 
+        // => MOVED TO COMPONENT FOR GLOBAL SEARCH (keeped just for example)
+        // filterByName(value){
+        //     if(value){
+        //         // all names in db are in lowercase so we need to transform the string sent by the user
+        //         value = value.toLowerCase();
+        //         console.log(value);
+        //         this.transitionTo('libraries', {queryParams: {search: value}});
+        //     } else {
+        //         this.controller.set('value', '');
+        //         // define search on undefined to delete the query and list all data
+        //         this.transitionTo('libraries', {queryParams: {search: undefined}});
+        //     }
                 
-        },
+        // },
         // when we click on the delete button
         deleteLibrary(library) {
             let confirmation = confirm('Are you sure ?');

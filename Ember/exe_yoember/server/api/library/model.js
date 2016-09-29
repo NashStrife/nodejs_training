@@ -108,8 +108,6 @@ let libraryModel = function() {
         });
     });
 
-    // return mongoose.model('invitation', Invitation, 'invitations');
-
     let Base = mongoose.model('library', Library, 'libraries');
     let exports = module.exports = Base;
     Base.Book = mongoose.model('book', Book, 'books');

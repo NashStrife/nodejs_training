@@ -3,37 +3,42 @@
 let logger = require(`${process.cwd()}/utils/logger`);
 let utils = require(`${process.cwd()}/utils/utils`)
 let model = require('./model');
-// to create custom error messages compatible with hapi-json-api module
+// to create custom error messages compatible with hapi-json-api module to send to ember
 let Boom = require('boom');
 
 let type = 'library';
 
 exports.getLibraries = function(req, res){
     logger.log("GET Libraries Controller");
-    // if we pass a query like "/api/libraries?name=my name" it will be filtered thx to req.query
-    // if not, it will list all the collection cause req.query will be null
-    logger.log(req.query);
-    model.find(req.query)
+    // set query to void to list all data if we are not searching for specific therms
+    let query = {};
+    // if the user search for a particular therm
+    if(req.query.search){
+        logger.log(req.query.search);
+        // create a regex to find data containing at least the query
+        let regex = { "$regex": req.query.search, "$options": "i" };
+        // create query to search for all keys in the model
+        query = { $or: [
+            {'name': regex},
+            {'address': regex},
+            {'phone': regex}
+        ]};
+    }
+    
+    model.find(query)
     .then(function(docs){
         logger.log(docs);
-        // the result is not empty we have a corresponding result
-        if(docs.length) {
-            let libraries = [];
-            // manip to edit data to be in json api format
-            docs.map(function(libraryFromDb){
-                let library = {
-                    type: type,
-                    id: libraryFromDb._id,
-                    attributes: libraryFromDb
-                };
-                libraries.push(library);
-            });
-            res({data: libraries});
-        } else {
-            logger.warn('No result for the query');
-            res(Boom.badRequest('No result for the query'));
-        }
-        
+        // manip to create a document compatible with the json-api format for ember
+        let libraries = [];
+        docs.map(function(libraryFromDb){
+            let library = {
+                type: type,
+                id: libraryFromDb._id,
+                attributes: libraryFromDb
+            };
+            libraries.push(library);
+        });
+        res({data: libraries});
     });
 };
 

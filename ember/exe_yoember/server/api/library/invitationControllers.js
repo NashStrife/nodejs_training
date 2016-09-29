@@ -9,8 +9,17 @@ let Boom = require('boom');
 let type = 'invitation';
 
 exports.getAllInvitations = function(req, res) {
-    logger.log('GET All Invitations Controller');
-    model.Invitation.find()
+    logger.log('GET Invitations Controller');
+    
+    let query = {};
+
+    if(req.query.search){
+        logger.log(req.query.search);
+        let regex = { "$regex": req.query.search, "$options": "i" };
+        query = {'email': regex};
+    }
+
+    model.Invitation.find(query)
     .then(function(docs){
         // logger.log(docs);
         let invitations = [];

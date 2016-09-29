@@ -3,11 +3,7 @@
 {{/if}}
 
 <h2>List</h2>
-<nav>
-    {{input type="text" value=value placeholder="Filter by Name"}}
-    <button class="btn btn-default" {{action 'filterByName' value}}>Search</button>
-    <button class="btn btn-default" {{action 'filterByName'}}>List All</button>
-</nav>
+
 <section>
     {{#if errorMessage}}
         <div class="alert alert-danger">{{errorMessage}}</div>

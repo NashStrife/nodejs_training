@@ -20,6 +20,7 @@ Router.map(function() {
     this.route('new');
     this.route('edit', {path: '/edit/:library_id'});
   });
+  this.route('list');
 });
 
 export default Router;

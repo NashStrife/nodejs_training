@@ -19,8 +19,8 @@ export default Ember.Route.extend({
             console.log('Saving new invitation...');
             newInvitation.save()
                 .then((response) => {
-                    // console.log(newInvitation);
-                    console.log('New Invitation Saved !');
+                    console.log(response);
+                    // console.log('New Invitation Saved !');
                     // set up a responseMessage property
                     this.controller.set('responseMessage', `Thank you! We've just saved your email address: ${newInvitation.get('email')}`);
                 }, (response)=>{

@@ -8,7 +8,7 @@ let Boom = require('boom');
 
 let type = 'contact';
 
-exports.getAllContacts = function(req, res) {
+exports.getContacts = function(req, res) {
     logger.log('GET Contacts Controller');
 
     let query = {};
@@ -24,7 +24,6 @@ exports.getAllContacts = function(req, res) {
 
     model.Contact.find(query)
     .then(function(docs){
-        logger.log(docs);
         let contacts = [];
 
         docs.map(function(contactFromDb){
@@ -35,6 +34,7 @@ exports.getAllContacts = function(req, res) {
             };
             contacts.push(contact);
         });
+        logger.log({data: contacts});
         res({data: contacts});
     });
 };

@@ -36,7 +36,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/books',
-        handler: bookControlles.getAllBooks
+        handler: bookControlles.getBooks
     },{
         method: 'GET',
         path: '/api/books/{id}',
@@ -58,7 +58,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/authors',
-        handler: authorControllers.getAllAuthors
+        handler: authorControllers.getAuthors
     },{
         method: 'GET',
         path: '/api/authors/{id}',
@@ -80,7 +80,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/invitations',
-        handler: invitationControllers.getAllInvitations
+        handler: invitationControllers.getInvitations
     },{
         method: 'POST',
         path: '/api/invitations',
@@ -90,7 +90,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/contacts',
-        handler: contactControllers.getAllContacts
+        handler: contactControllers.getContacts
     },{
         method: 'POST',
         path: '/api/contacts',

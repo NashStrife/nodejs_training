@@ -28,16 +28,8 @@ let libraryModel = function() {
             type: String,
             lowercase: true
         },
-        releaseYear: {
+        releaseyear: {
             type: Date
-        },
-        library: {
-            type: Schema.Types.ObjectId, 
-            ref: 'library' 
-        },
-        author: {
-            type: Schema.Types.ObjectId, 
-            ref: 'author' 
         }
     });
 

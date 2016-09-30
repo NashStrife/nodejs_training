@@ -8,21 +8,29 @@ let Boom = require('boom');
 
 let type = 'book';
 
-exports.getAllBooks = function(req, res){
-    logger.log("GET All Authors Controller");
-    model.Book.find()
+exports.getBooks = function(req, res){
+    logger.log("GET Books Controller");
+    let query = {};
+
+    if(req.query.search){
+        logger.log(req.query.search);
+        let regex = { "$regex": req.query.search, "$options": "i" };
+        query = {'title': regex};
+    }
+
+    model.Book.find(query)
     .then(function(docs){
-        logger.log(docs);
-        let dataFormatted = [];
-        docs.map(function(docFromDb){
-            let doc = {
+        let books = [];
+        docs.map(function(bookFromDb){
+            let book = {
                 type: type,
-                id: docFromDb._id,
-                attributes: docFromDb
+                id: bookFromDb._id,
+                attributes: bookFromDb
             };
-            books.push(doc);
+            books.push(book);
         });
-        res({data: dataFormatted});
+        logger.log({data: books});
+        res({data: books});
     });
 };
 

@@ -7,15 +7,18 @@ let libraries = [
     {
         "name": "Bosco and Sons",
         "address": "674 Herman Heights, Ariannaton",
-        "phone": "220.670.5411"
+        "phone": "220.670.5411",
+        "books": ["57ed27633c1f353bf7a74d53", "57ed27633c1f353bf7a74d54"]
     },{
         "name": "Leannon LLC",
         "address": "763 Electa Parkway, New Eveline",
-        "phone": "305-686-4919"
+        "phone": "305-686-4919",
+        "books": ["57ed27633c1f353bf7a74d55"]
     },{
         "name": "Quitzon Inc",
         "address": "6881 Katrine Creek, North Darron",
-        "phone": "(061) 921-7075"
+        "phone": "(061) 921-7075",
+        "books": ["57ed27633c1f353bf7a74d54", "57ed27633c1f353bf7a74d55"]
     }
 ];
 
@@ -39,6 +42,35 @@ let contacts = [
     }
 ];
 
+let authors = [
+    {
+        "name": "Phoebe Crona",
+        "books": ["57ed27633c1f353bf7a74d54"]
+    },{
+        "name": "Vivien Lind",
+        'books': ['57ed27633c1f353bf7a74d53', '57ed27633c1f353bf7a74d55']
+    },{
+        "name": "Hillard Schneider",
+        "books": []
+    }
+];
+
+let books = [
+    {
+        "_id": "57ed27633c1f353bf7a74d53",
+        "title": "Incredible Steel Mouse Cookbook",
+        "releaseyear": new Date("2006")
+    },{
+        "_id": "57ed27633c1f353bf7a74d54",
+        "title": "Sleek Cotton Hat Cookbook",
+        "releaseyear": new Date("2005")
+    },{
+        "_id": "57ed27633c1f353bf7a74d55",
+        "title": "Small Fresh Table Cookbook",
+        "releaseyear": new Date("1938")
+    }
+];
+
 let cleanDB = function() {
     logger.log('SEED : Cleaning the DB');
     let cleanPromises = [Library]
@@ -46,6 +78,8 @@ let cleanDB = function() {
             let remove = model.remove().exec();
             remove.invitations = model.Invitation.remove().exec();
             remove.contacts = model.Contact.remove().exec();
+            remove.books = model.Book.remove().exec();
+            remove.authors = model.Author.remove().exec();
             return remove;
         });
     return Promise.all(cleanPromises);
@@ -70,6 +104,34 @@ let createLibraries = function(data) {
         .then(function(libraries) {
             return _.merge({
                 libraries: libraries
+            }, data || {});
+        });
+};
+
+let createAuthors = function(data) {
+    logger.log("SEED : Creating Authors");
+    let promises = authors.map(function(author) {
+        return createDoc(Library.Author, author);
+    });
+
+    return Promise.all(promises)
+        .then(function(authors) {
+            return _.merge({
+                authors: authors
+            }, data || {});
+        });
+};
+
+let createBooks = function(data) {
+    logger.log("SEED : Creating Books");
+    let promises = books.map(function(book) {
+        return createDoc(Library.Book, book);
+    });
+
+    return Promise.all(promises)
+        .then(function(books) {
+            return _.merge({
+                books: books
             }, data || {});
         });
 };
@@ -108,4 +170,8 @@ cleanDB()
     .then(createInvitations)
     .then(logger.log.bind(logger))
     .then(createContacts)
+    .then(logger.log.bind(logger))
+    .then(createAuthors)
+    .then(logger.log.bind(logger))
+    .then(createBooks)
     .then(logger.log.bind(logger));

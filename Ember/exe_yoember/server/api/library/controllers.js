@@ -25,9 +25,9 @@ exports.getLibraries = function(req, res){
         ]};
     }
     
-    model.find(query)
+    // use the populate to auto fill the "books" array with informations of corresponding books inside the Book collection
+    model.find(query).populate('books')
     .then(function(docs){
-        logger.log(docs);
         // manip to create a document compatible with the json-api format for ember
         let libraries = [];
         docs.map(function(libraryFromDb){
@@ -38,6 +38,7 @@ exports.getLibraries = function(req, res){
             };
             libraries.push(library);
         });
+        logger.log({data: libraries});
         res({data: libraries});
     });
 };

@@ -17,11 +17,13 @@
           {{!--tagName define a different tag to replace the default <a>--}}
             {{#link-to 'index' tagName="li"}} <a href="">Home</a> {{/link-to}}
             {{#link-to 'libraries' tagName="li"}} <a href="">Libraries</a>{{/link-to}}
-            {{#link-to 'about' tagName="li"}} <a href="">About</a> {{/link-to}}
-            {{#link-to 'contact' tagName="li"}} <a href="">Contact</a> {{/link-to}}
+            {{#link-to 'authors' tagName="li"}} <a href="">Authors</a> {{/link-to}}
+            {{#link-to 'books' tagName="li"}} <a href="">Books</a> {{/link-to}}
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        {{#link-to 'about' tagName="li"}} <a href="">About</a> {{/link-to}}
+        {{#link-to 'contact' tagName="li"}} <a href="">Contact</a> {{/link-to}}
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             Admin<span class="caret"></span>

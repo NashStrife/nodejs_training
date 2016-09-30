@@ -8,7 +8,7 @@ let Boom = require('boom');
 
 let type = 'invitation';
 
-exports.getAllInvitations = function(req, res) {
+exports.getInvitations = function(req, res) {
     logger.log('GET Invitations Controller');
     
     let query = {};

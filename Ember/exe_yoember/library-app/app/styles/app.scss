@@ -99,9 +99,14 @@ h3 {
     padding: 5px;
 }
 
-.lib-form input, .lib-form textarea {
+.lib-form input, .lib-form textarea, .lib-form select {
     display: block;
     min-width: 100%;
+    font-size: 16px;
+}
+
+.lib-form select {
+    text-transform: capitalize;
 }
 
 input[type=submit] {

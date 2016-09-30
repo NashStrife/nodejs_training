@@ -4,21 +4,49 @@
 <h2>Libraries</h2>
 {{#if model.libraries}}
     {{#each model.libraries as |item|}}
+        {{library-item item=item}}
+    {{/each}}
+{{else}}
+    No result in "Libraries" for this query
+{{/if}}
+
+<h2>Books</h2>
+{{#if model.books}}
+    {{#each model.books as |item|}}
+        <article class="list">
+            <header>
+                <h3>{{item.title}}</h3>
+            </header>
+            <ul>
+                <li>Release Year: {{moment-format item.releaseyear 'YYYY'}}</li>
+            </ul>
+        </article>
+    {{/each}}
+{{else}}
+    No result in "Books" for this query
+{{/if}}
+
+<h2>Authors</h2>
+{{#if model.authors}}
+    {{#each model.authors as |item|}}
         <article class="list">
             <header>
                 <h3>{{item.name}}</h3>
             </header>
-            <ul>
-                <li>Address: {{item.address}}</li>
-                <li>Phone: {{item.phone}} </li>
-            </ul>
-            <footer>
-
-            </footer>
+            <div class="container">
+                Books:
+                <ul>{{#each item.books as |book|}}
+                    <li>
+                        Title: {{book.title}}<br>
+                        Release Year: {{book.releaseYear}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
         </article>
     {{/each}}
 {{else}}
-    No result in "Libraries" for this query
+    No result in "Books" for this query
 {{/if}}
 
 <h2>Contacts</h2>

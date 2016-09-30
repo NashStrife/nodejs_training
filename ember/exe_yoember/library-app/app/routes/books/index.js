@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     },
     
     model(){
-        return this.store.findAll('library');
+        return this.store.findAll('book');
     },
 
     setupController(controller, model){
@@ -24,11 +24,11 @@ export default Ember.Route.extend({
 
     actions: {
         // when we click on the delete button
-        deleteLibrary(library) {
+        deleteBook(book) {
             let confirmation = confirm('Are you sure ?');
             if(confirmation) {
                 // send delete request to /api/libraries/{id}
-                library.destroyRecord();
+                book.destroyRecord();
             }
         }
     }

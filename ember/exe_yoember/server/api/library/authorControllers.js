@@ -8,21 +8,29 @@ let Boom = require('boom');
 
 let type = 'author';
 
-exports.getAllAuthors = function(req, res){
-    logger.log("GET All Authors Controller");
-    model.Author.find()
+exports.getAuthors = function(req, res){
+    logger.log("GET Authors Controller");
+    let query = {};
+
+    if(req.query.search){
+        logger.log(req.query.search);
+        let regex = { "$regex": req.query.search, "$options": "i" };
+        query = {'name': regex};
+    }
+
+    model.Author.find(query).populate('books')
     .then(function(docs){
-        logger.log(docs);
-        let dataFormatted = [];
-        docs.map(function(docFromDb){
-            let doc = {
+        let authors = [];
+        docs.map(function(authorFromDb){
+            let author = {
                 type: type,
-                id: docFromDb._id,
-                attributes: docFromDb
+                id: authorFromDb._id,
+                attributes: authorFromDb
             };
-            books.push(doc);
+            authors.push(author);
         });
-        res({data: dataFormatted});
+        logger.log({data: authors});
+        res({data: authors});
     });
 };
 

@@ -13,14 +13,7 @@
 <h2>Books</h2>
 {{#if model.books}}
     {{#each model.books as |item|}}
-        <article class="list">
-            <header>
-                <h3>{{item.title}}</h3>
-            </header>
-            <ul>
-                <li>Release Year: {{moment-format item.releaseyear 'YYYY'}}</li>
-            </ul>
-        </article>
+        {{book-item item=item}}
     {{/each}}
 {{else}}
     No result in "Books" for this query
@@ -38,7 +31,7 @@
                 <ul>{{#each item.books as |book|}}
                     <li>
                         Title: {{book.title}}<br>
-                        Release Year: {{book.releaseYear}}
+                        Release Year: {{moment-format book.releaseyear 'YYYY'}}
                     </li>
                     {{/each}}
                 </ul>

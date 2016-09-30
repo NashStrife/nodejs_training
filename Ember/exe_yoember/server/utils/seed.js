@@ -44,12 +44,15 @@ let contacts = [
 
 let authors = [
     {
+        "_id": "57ee6f9f39329031d219b485",
         "name": "Phoebe Crona",
         "books": ["57ed27633c1f353bf7a74d54"]
     },{
+        "_id": "57ee6f9f39329031d219b486",
         "name": "Vivien Lind",
         'books': ['57ed27633c1f353bf7a74d53', '57ed27633c1f353bf7a74d55']
     },{
+        "_id": "57ee6f9f39329031d219b487",
         "name": "Hillard Schneider",
         "books": []
     }
@@ -59,15 +62,18 @@ let books = [
     {
         "_id": "57ed27633c1f353bf7a74d53",
         "title": "Incredible Steel Mouse Cookbook",
-        "releaseyear": new Date("2006")
+        "releaseyear": new Date("2006"),
+        "author": "57ee6f9f39329031d219b486"
     },{
         "_id": "57ed27633c1f353bf7a74d54",
         "title": "Sleek Cotton Hat Cookbook",
-        "releaseyear": new Date("2005")
+        "releaseyear": new Date("2005"),
+        "author": "57ee6f9f39329031d219b485"
     },{
         "_id": "57ed27633c1f353bf7a74d55",
         "title": "Small Fresh Table Cookbook",
-        "releaseyear": new Date("1938")
+        "releaseyear": new Date("1938"),
+        "author": "57ee6f9f39329031d219b486"
     }
 ];
 

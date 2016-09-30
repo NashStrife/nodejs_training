@@ -30,6 +30,10 @@ let libraryModel = function() {
         },
         releaseyear: {
             type: Date
+        },
+        author: {
+            type: Schema.Types.ObjectId, 
+            ref: 'author' 
         }
     });
 

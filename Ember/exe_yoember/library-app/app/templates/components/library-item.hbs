@@ -9,9 +9,9 @@
             <li>Phone: {{item.phone}} </li>
         </ul>
         <h4>Books:</h4>
-        <ul>
+        <ul class="books-list">
             {{#each item.books as |book|}}
-            <li>
+            <li class="capitalize">
                 {{book.title}}<br>
                 Release Year: {{moment-format book.releaseyear 'YYYY'}}
             </li>

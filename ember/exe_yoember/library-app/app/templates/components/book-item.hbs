@@ -6,6 +6,8 @@
     <div class="container">
         <ul>
             <li>Release Year: {{moment-format item.releaseyear 'YYYY'}}</li>
+            {{log item.author}}
+            <li class="capitalize">Author: {{item.author.name}}</li>
         </ul>
     </div>
     <footer>

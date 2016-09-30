@@ -9,11 +9,12 @@
 <p>
     <label for="author">Author :</label>
     {{!--{{input type="text" id="author" value=item.author placeholder="John Doe"}}--}}
-    <select name="author" id="author">
+    
+    {{#x-select id="author" value=item.author_id}}
         {{#each authors as |author|}}
-        <option value="{{author.id}}">{{author.name}}</option>
+            {{#x-option value=author.id}}{{author.name}}{{/x-option}}
         {{/each}}
-    </select>
+    {{/x-select}}
 </p>
 <p>
     {{input type="submit" value=buttonLabel disabled=item.isDisabled}}

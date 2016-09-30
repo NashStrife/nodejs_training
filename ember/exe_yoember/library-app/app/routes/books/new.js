@@ -17,21 +17,24 @@ export default Ember.Route.extend({
     // },
     actions: {
         saveBook(newBook) {
-            console.log(newBook);
             console.log('Saving new Book...');
-            // newBook.save()
-            //     .then((response) => {
-            //         console.log(response);
-            //         // console.log('New library Saved !');
-            //         this.transitionTo('books', {queryParams: {responseMessage: 'New Book Saved !'}});
-            //     }, (response) => {
-            //         if(response.errors[0].status === 400){
-            //             this.controller.set('errorMessage', 'There is already a Book with this name');
-            //         }
-            //     });
+            // console.log(newBook.get('author_id'));
+            newBook.set('author', newBook.get('author_id'));
+            newBook.set('releaseyear', new Date(newBook.get('releaseyear')));
+            
+            newBook.save()
+                .then((response) => {
+                    console.log(response);
+                    // console.log('New library Saved !');
+                    this.transitionTo('books', {queryParams: {responseMessage: 'New Book Saved !'}});
+                }, (response) => {
+                    if(response.errors[0].status === 400){
+                        this.controller.set('errorMessage', 'There is already a Book with this name');
+                    }
+                });
         },
         willTransition() {
-            this.controller.get('model').rollbackAttributes();
+            this.controller.get('model.book').rollbackAttributes();
         }
     }
 });

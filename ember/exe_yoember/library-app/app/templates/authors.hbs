@@ -22,14 +22,14 @@
                     </div>
                 </form>
             {{else}}
-                <span {{action 'editAuthor' author}}>{{author.name}}</span>
+                <span {{action 'editAuthor' author}} class="capitalize">{{author.name}}</span>
             {{/if}}
         </td>
         <td>
             <ul>
                 {{#each author.books as |book|}}
-                    <li>Title: {{book.title}} <br>
-                    Release Year: {{book.releaseYear}}</li>
+                    <li class="capitalize">Title: {{book.title}} <br>
+                    Release Year: {{moment-format book.releaseyear 'YYYY'}}</li>
                 {{/each}}
             </ul>
         </td>

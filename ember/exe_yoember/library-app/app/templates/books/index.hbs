@@ -10,7 +10,6 @@
     {{/if}}
     {{#each model as |book|}}
     {{!--call the component library-item and pass the library locale var as "item" parameter--}}
-        {{log model}}
         {{#book-item item=book}}
         {{!--the links appear in place of the "yield" tag inside the component--}}
             {{!--{{#link-to 'books.edit' book.id class="edit" tagName="button"}} Edit{{/link-to}}--}}

@@ -18,7 +18,7 @@ exports.getBooks = function(req, res){
         query = {'title': regex};
     }
 
-    model.Book.find(query)
+    model.Book.find(query).populate('author')
     .then(function(docs){
         let books = [];
         docs.map(function(bookFromDb){
@@ -39,20 +39,42 @@ exports.postBook = function(req, res){
     let request = {};
     if(req.payload.data)
         request = req.payload.data.attributes;
+        logger.log(request);
     let book = new model.Book(request);
 
+    // FIRST save the new book
     book.save(function(err, data) {
+        logger.log("----- Save the book");
         if(err) {
             logger.warn(err.message);
             res(Boom.badRequest(err.message));
             return;
         }
-        let attributes = {
-            message: 'Document saved'
-        };
-        logger.log(data);
-        // use a custom function from the utils file to avoid redundancy
-        res(utils.formatJson(type, data._id, attributes));
+
+        // THEN get data of the author corresponding to the id sent by ember
+        let author = model.Author.findById(request.author,
+            function(err, authorFromDb) {
+                logger.log("----- Get the author");
+                if(err){
+                    res(utils.resError(type, err));
+                    logger.warn(err.message);
+                    return;
+                }
+                
+                // add the id of the new saved book in the books array
+                authorFromDb.books.push(book._id);
+                
+                // FINALLY update the author model in the DB
+                author.update(authorFromDb, function(err, result){
+                    logger.log("----- Update the author");
+                    let attributes = {
+                        message: 'Document saved'
+                    };
+                    logger.log(data);
+                    res(utils.formatJson(type, data._id, attributes));
+                });
+            }
+        );
     });
 };
 

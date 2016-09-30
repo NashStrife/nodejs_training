@@ -4,11 +4,11 @@
 {{!--use the var defined in the setupController of the route--}}
 <h2>{{title}}</h2>
 
-<form {{action 'saveBook' model on="submit"}} class="lib-form">
+<form {{action 'saveBook' model.book on="submit"}} class="lib-form">
     {{book-item-form item=model.book authors=model.authors buttonLabel=buttonLabel}}
 </form>
 
 <h3>Book's Preview:</h3>
-{{#book-item item=model}}
+{{#book-item item=model.book}}
     Buttons list
 {{/book-item}}

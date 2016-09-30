@@ -55,11 +55,25 @@ h3 {
     border-radius: 3px;
 }
 
+.capitalize{
+    text-transform: capitalize;
+}
+
+.books-list li {
+    border-left: 1px solid $mediumGrey;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    background-color: #F6F6F6;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
 .list header, .list footer {
     background-color: $lightGrey;
     padding-left: 10px;
     line-height: 35px;
-    height: 35px;
 }
 
 .list h3 {

@@ -1,0 +1,219 @@
+body {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	background-color: #FFF;
+}
+
+.container {
+	margin: 0 auto;
+	padding: 0;
+	width: 600px;
+}
+
+h1 {
+	text-align: center;
+	color : #333;
+}
+
+nav {
+	background-color: #E88124;
+	padding: 10px;
+	color: #FFF;
+	line-height: 35px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav li a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: #FFF;
+	text-align: center;
+	min-width: 100px;
+	padding: 0 10px 0 10px;
+	border-radius: 5px;
+}
+
+nav li a:hover{
+	color: #E88124;
+}
+
+nav input, nav select {
+	border: 1px solid #333;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+nav input:focus, nav select:focus{
+	outline: none;
+}
+
+nav input[type="text"] {
+	width: 400px;
+}
+
+nav select {
+	margin-right: 50px;
+}
+
+article {
+	background-color: #FFF;
+	padding: 15px;
+	box-sizing: border-box;
+	/*margin-bottom: 10px;*/
+	border-bottom: 1px solid #333;
+}
+
+article:last-child{
+	border-bottom: 0px;
+}
+
+article header {
+	margin: 0 0 10px 0;
+	line-height: 40px;
+}
+article header h2 {
+	display: inline-block;
+	margin: 0;
+}
+
+article header a {
+	color: #333;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-decoration: none;
+	float: right;
+}
+
+article header a:hover{
+	color: #E88124;
+}
+
+article div{
+	box-sizing: border-box;
+	display: inline-block;
+	width: 200px;
+	vertical-align: top;
+	margin: 0 20px 0 0;
+}
+
+article img{
+	width: 100%;
+	height: auto;
+}
+
+article div span, article h2 span {
+	font-weight: bold;
+	color: #A160FF;
+}
+
+article h2 span {
+	float: right;
+}
+
+article div span {
+	line-height: 30px;
+}
+
+article div ul {
+	list-style: none;
+}
+
+article div ul {
+	margin: 0;
+	padding: 0;
+}
+
+article div:last-child {
+	margin: 0;
+	width: 300px;
+}
+
+.view-details article {
+	border: 0px;
+}
+
+/* FORM */
+
+form {
+	padding: 10px;
+}
+
+form ul {
+	list-style: none;
+	margin: 10px;
+	padding: 0;
+}
+
+form p {
+	text-align: center;
+}
+
+form li {
+	display: inline-block;
+	width: 100px;
+}
+
+form li span {
+	display: inline-block;
+	width: 15px;
+	line-height: 15px;
+	text-align : center;
+	background-color: #E88124;
+	color: #FFF;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+form li span:hover {
+	background-color: #333;
+}
+
+form li:last-child {
+	width: 400px;
+}
+
+form .elements-types li {
+	display: block;
+	width: 100%;
+}
+
+form fieldset {
+	padding: 5px;
+	border: 1px solid #333;
+}
+
+form input {
+	border: 1px solid #333;
+	padding: 5px;
+}
+
+form input[required].ng-valid {
+   background-color: #BEB;
+}
+
+form input.ng-touched.ng-invalid {
+    background-color: #FFD7B4;
+}
+
+form input[type="submit"] {
+	padding: 5px;
+	background-color: #FFF;
+	color: #333;
+	min-width: 50px;
+}
+
+form input[type="submit"]:hover {
+	cursor: pointer;
+	color: #E88124;
+}

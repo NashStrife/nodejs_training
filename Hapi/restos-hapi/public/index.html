@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>List of restaurants</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body ng-app="restoApp">
+    <div class="container">
+        <h1>Resto Application</h1>
+        <!-- ng-view will search for the partial defined in app.js -->
+        <div ng-view></div>
+    </div>
+
+    <!-- Angular scripts -->
+    <script src="/lib/angular.min.js"></script>
+    <script src="/lib/angular-route.min.js"></script>
+    <script src="/lib/angular-resource.min.js"></script>
+    <!-- Perso scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
+</body>
+</html>
